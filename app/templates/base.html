@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="{{ url_for('static', filename='css/style.css') }}"
+          rel="stylesheet"  type="text/css">
+        <title>{% block title %}ВМП{% endblock %}</title>
+        {% block scripts%}{% endblock %}
+    </head>
+    <body>
+        <div class="wrapper">
+        <header>
+            <h1>{% block header %}
+                Виртуальный Математический Практикум
+                {%endblock %}</h1>
+            <nav class="dws-menu">
+                <ul>
+                    <li><a href="{{ url_for('main.index') }}">Главная</a></li>
+                    <li><a href="{{ url_for('programs.index') }}">Программы</a>
+                    <ul>
+                        <li><a href="#">Вычислительная математика</a></li>
+                        <li><a href="{{ url_for('programs.discrete_math.index') }}">Дискретная математика</a>
+                        <ul>
+                            <li><a href="#">Графы</a></li>
+                            <li><a href="#">Булева алгебра</a></li>
+                        </ul>
+                        </li>
+                        <li><a href="#">Линейная алгебра</a></li>
+                    </ul>
+                    </li>
+                    <li><a href="#">Статьи</a></li>
+                    <li><a href="{{ url_for('main.contacts') }}">Контакты</a></li>
+                    <li><a href="{{ url_for('main.about') }}">О сайте</a></li>
+                </ul>
+            </nav>
+        </header>
+        {% block sidebar1 %}
+        {% endblock %}
+        {% block sidebar2 %}
+        {% endblock %}
+        {% block text %}
+            <main>
+                <p>Main Text</p>
+            </main>
+        {% endblock %}
+        <footer>
+            <p>Contacts: <a
+                href="https://github.com/dsuhoi">https://github.com/dsuhoi</a></p>
+            <p>Copyright © DSuhoi, 2021</p>
+        </footer>
+        </div>
+    </body>
+</html>

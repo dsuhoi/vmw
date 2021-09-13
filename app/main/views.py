@@ -4,6 +4,16 @@ from flask import Flask, request, render_template, redirect, url_for
 @main.route('/')
 @main.route('/index')
 def index():
-    import math as m
+    return render_template('index.html')
 
-    return f"<p>Hello, World!!! {m.sin(12)}</p>"
+@main.route('/contacts')
+def contacts():
+    return render_template('contacts.html')
+
+@main.route('/about')
+def about():
+    return render_template('about.html')
+
+@main.route('/program')
+def program():
+    return render_template('graph.html')

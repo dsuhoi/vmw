@@ -1,0 +1,195 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, ul, li{
+                 
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+body {
+    font-family: Verdana, Arial, sans-serif;    
+    background-color: #f7f7f7;
+}
+
+header{ 
+    background-color: #f4f4f4;
+}
+
+header h1 {
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px 10px 10px 10px;
+    clear: both;
+}
+
+nav {
+    background-color: #eee;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.wrapper{
+    background-color: #f7f7f7;
+}
+.wrapper li{ 
+    list-style-type: none;
+}
+.aside h2 {
+    font-size: 0.95em;
+    margin-top: 15px;
+}
+
+.aside h3 {
+    font-size: 0.85em;
+    margin-top: 10px;
+}
+
+.aside p, .aside li {
+    font-size: .75em;
+    margin-top: 10px;   
+}
+
+/*****************************************/
+
+.dws-menu *{
+    margin: 0;
+    padding: 0;
+}
+.dws-menu ul,
+.dws-menu ol{
+    list-style: none;
+}
+.dws-menu > ul{
+    display: flex;
+    justify-content: center;
+}
+.dws-menu > ul li a{
+    display: block;
+    background: #ececed;
+    padding: 15px 30px 15px 40px;
+    font-size: 14px;
+    color: #454547;
+    text-decoration: none;
+    text-transform:uppercase;
+}
+.dws-menu > ul li{
+    position: relative;
+}
+.dws-menu > ul li > a i.fa{
+    position: absolute;
+    top: 15px;
+    left: 12px;
+    font-size: 18px;
+}
+.dws-menu > ul li:first-child{
+    border-left: 1px solid #b2b3b5;
+}
+.dws-menu > ul li:last-child{
+    border-right: 1px solid #babbbd;
+}
+.dws-menu > ul li{
+    position: relative;
+    border-right: 1px solid #c7c8ca;
+}
+.dws-menu li a:hover{
+    background: #454547;
+    color: #ffffff;
+    box-shadow: 1px 5px 10px -5px black;
+    transition: all 0.3s ease;
+}
+.dws-menu > ul li a{
+    display: block;
+    background: #ececed;
+    padding: 15px 30px 15px 40px;
+    font-size: 14px;
+    color: #454547;
+    text-decoration: none;
+    text-transform:uppercase;
+    transition: all 0.3s ease;
+} 
+.dws-menu li ul{
+    position: absolute;
+    min-width: 150px;
+}    
+.dws-menu li > ul li{
+    border: 1px solid #c7c8ca;
+}
+.dws-menu li > ul li a{
+    padding: 10px;
+    text-transform: none;
+    background: #e4e4e5;
+}
+.dws-menu li > ul li ul{
+    position: absolute;
+    right: -150px;
+    top: 0;
+}
+.dws-menu li ul{
+    position: absolute;
+    min-width: 150px;
+    display: none;
+}
+.dws-menu li:hover > ul{
+    display: block;
+}    
+/**************************/
+
+#sidebar1 {
+    float: left;
+    width: 20%;
+    padding: 0 20px 0 10px;
+}
+
+#sidebar2 {
+    float: right;
+    width: 20%; 
+    padding: 0 20px 0 10px;
+}
+
+article{
+    background-color: #fafafa;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 25px;
+    width: 60%;
+}
+
+article:after, #main:after{
+    clear:both;
+    display:table;
+    content:'';
+}
+article h2, main h2{
+    font-size: 1.3em;
+    margin-bottom:15px;
+}
+article p, main p{
+    line-height: 150%;
+    margin-bottom: 15px;
+}
+
+/**********Основные стили************/
+main{
+    background-color: #fafafa;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    margin-left: 20%;
+    /*margin-right: 20%;*/
+    padding: 25px;
+    width: 80%;
+}
+/**********************************/
+footer{ 
+    border-top: 1px solid #ccc;
+    font-size: .8em;    
+    text-align: center;
+    padding: 10px 10px 30px 10px;
+}
