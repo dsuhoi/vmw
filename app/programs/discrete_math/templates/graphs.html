@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Графы{% endblock %}
+{% block text %}
+<article>
+    <form method="get">
+        <p>
+            <label for="comment">Введите матрицу смежности графа:</label><br/>
+            <textarea name="matrix" id="matrix" 
+                placeholder="Разделение столбцов пробелом" maxlength="200">0 1 1 0
+1 0 1 0
+1 1 0 1
+0 0 1 0</textarea>   
+        </p>
+        <p>
+        <label for="task_list">Выберите задачу:</label> <br/>
+        <select id="task_list" name="task_list">
+            <option value="create">Создание графа</option>
+            <option value="planar">Планарность</option>
+            <option value="chromatic">Хроматическое число</option>
+        </select>
+        <p>
+            <input type="submit" value="Решение"/>
+        </p>
+
+    </form>
+    {% if error %}
+    <p><b>Ошибка:</b> {{ error }}</p>
+    {% endif  %}
+    {% if result %}
+    <p>{{result['text']}}</p>
+    <!--iframe src="" width="1000"
+        height="500"-->
+    {% endif %}
+</article>
+{% endblock %}

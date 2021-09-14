@@ -21,7 +21,7 @@
                         <li><a href="#">Вычислительная математика</a></li>
                         <li><a href="{{ url_for('programs.discrete_math.index') }}">Дискретная математика</a>
                         <ul>
-                            <li><a href="#">Графы</a></li>
+                            <li><a href="{{ url_for('programs.discrete_math.graphs') }}">Графы</a></li>
                             <li><a href="#">Булева алгебра</a></li>
                         </ul>
                         </li>
@@ -44,8 +44,8 @@
             </main>
         {% endblock %}
         <footer>
-            <p>Contacts: <a
-                href="https://github.com/dsuhoi">https://github.com/dsuhoi</a></p>
+            <p>Contacts: <a href="https://github.com/dsuhoi">
+                https://github.com/dsuhoi</a></p>
             <p>Copyright © DSuhoi, 2021</p>
         </footer>
         </div>
