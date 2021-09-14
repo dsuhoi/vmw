@@ -8,4 +8,4 @@ app = create_app()
 manager = Manager(app)
 
 if __name__ == '__main__':
-    manager.run(threaded=True, port=5000)
+    manager.run()

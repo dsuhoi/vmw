@@ -6,10 +6,8 @@
         <p>
             <label for="comment">Введите матрицу смежности графа:</label><br/>
             <textarea name="matrix" id="matrix" 
-                placeholder="Разделение столбцов пробелом" maxlength="200">0 1 1 0
-1 0 1 0
-1 1 0 1
-0 0 1 0</textarea>   
+                placeholder="Разделение столбцов пробелом"
+                width=100 height=100>{{ params['matrix'] }}</textarea>   
         </p>
         <p>
         <label for="task_list">Выберите задачу:</label> <br/>
@@ -23,13 +21,15 @@
         </p>
 
     </form>
+    
     {% if error %}
-    <p><b>Ошибка:</b> {{ error }}</p>
+    <p><b>Error:</b> {{ error }}</p>
     {% endif  %}
     {% if result %}
-    <p>{{result['text']}}</p>
-    <!--iframe src="" width="1000"
-        height="500"-->
+    <h2>Результат:</h2>
+    <p>{{ result['text'] }}</p>
+    <iframe src="{{ url_for('.result') }}" width="950" height="650" 
+       scrolling="no" frameborder="0"></iframe>
     {% endif %}
 </article>
 {% endblock %}
