@@ -13,10 +13,12 @@ def result(func):
         if isinstance(var, tuple):
             ax = fig.add_subplot(111, projection='3d')
             ax.set_zlabel('z')
+            ax.set_xlabel(var[0])
+            ax.set_ylabel(var[1])
         else:
             ax = fig.add_subplot()
-        ax.set_xlabel('x')
-        ax.set_ylabel('y')
+            ax.set_xlabel(var)
+            ax.set_ylabel(f"f({var})")
         ax.grid(True)
         ax.legend()
 
@@ -64,13 +66,13 @@ def derivative(f, var, ax, f_parse, params):
             f2k, text = f2_k(f, d0[0], d0[1], X, Y)
             ax.plot_surface(X, Y, f2k, label=text)
             res = "Уравнение касательной плоскости: $$z = " + text + "$$"
-        return res
     else:
         ax.plot(x, f(x), label=sp.latex(f_parse))
         ax.plot(x, f_(f, x), "r--", label=sp.latex(sp.diff(f_parse)))
-        res = "$$ f'(x) = " + sp.latex(sp.diff(f_parse, var))
+        res = f"$$ f'({var}) = " + sp.latex(sp.diff(f_parse, var))
         if d0:
             fk, text = f_k(f, d0[0], x)
             ax.plot(x, fk, "y", label=text)
-            res += f", f'({d0[0]}) = {round(f_(f, d0[0]), 3)}, $$ Уравнение касательной: $$y = " + text 
-        return  res + "$$"
+            res += f", f'({d0[0]}) = {round(f_(f, d0[0]), 3)}, $$Уравнение касательной: $$y = " + text
+        res += "$$"
+    return res + "График:"

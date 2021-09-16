@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Нелинейные алгебраические уравнения{% endblock %}
+{% block scripts %}
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+{% endblock %}
+{% block text %}
+<article>
+    <form method="get">
+        <p>
+        <p>
+            <input type="text" name="function" id="function" size=40
+            placeholder="Введите функцию: x**2 + sin(x)"
+            value="{{ params['function'] if params['function'] }}" /> 
+            <input type="text" name="range" id="range" size=20
+            placeholder="Интервал: -10 10" value="{{ params['range'] if params['range'] }}" />
+            <input type="text" name="e" id="e" size=12 placeholder="Погрешность" 
+            value="{{ params['e'] if params['e'] else "0.001" }}" />
+        </p>
+        <p>
+        <label for="task_list">Выберите алгоритм:</label> <br/>
+        <select id="task_list" name="task_list">
+            <optgroup label="Интервальные методы">
+                <option value="half_del">Метод половинного деления</option>
+            </optgroup>
+            <optgroup label="Методы уточнения решения">
+                <option value="simple_iter">Метод простых итераций</option>
+            </optgroup>
+        </select>
+        <p>
+            <input type="submit" value="Решение"/>
+        </p>
+    </form>
+    
+    {% if error %}
+    <p><b>Error:</b> {{ error }}</p>
+    {% endif %}
+    {% if result %}
+    <h2>Результат:</h2>
+    <p>{{ result['text'] }}</p>
+        {% if not result['no_iframe'] %}
+        <iframe src="{{ url_for('.result') }}" width="950" height="650" 
+           scrolling="no" frameborder="0"></iframe>
+        {% endif %}
+    {% endif %}
+</article>
+{% endblock %}
