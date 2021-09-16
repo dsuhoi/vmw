@@ -18,7 +18,13 @@
                     <li><a href="{{ url_for('main.index') }}">Главная</a></li>
                     <li><a href="{{ url_for('programs.index') }}">Программы</a>
                     <ul>
-                        <li><a href="#">Вычислительная математика</a></li>
+                        <li><a href="{{ url_for('programs.comp_math.index') }}">Вычислительная математика</a>
+                        <ul>
+                            <li><a href="{{ url_for('programs.comp_math.deriv')}}">Производные</a></li>
+                            <li><a href="#"><p>Нелинейные</p><p>алгебраические</p>уравнения</a></li>
+                            <li><a href="#">Методы оптимизаций</a></li>
+                        </ul>
+                        </li>
                         <li><a href="{{ url_for('programs.discrete_math.index') }}">Дискретная математика</a>
                         <ul>
                             <li><a href="{{ url_for('programs.discrete_math.graphs') }}">Графы</a></li>

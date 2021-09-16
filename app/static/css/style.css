@@ -115,7 +115,7 @@ nav {
 } 
 .dws-menu li ul{
     position: absolute;
-    min-width: 150px;
+    min-width: 200px;
 }    
 .dws-menu li > ul li{
     border: 1px solid #c7c8ca;
@@ -127,12 +127,12 @@ nav {
 }
 .dws-menu li > ul li ul{
     position: absolute;
-    right: -150px;
+    right: -200px;
     top: 0;
 }
 .dws-menu li ul{
     position: absolute;
-    min-width: 150px;
+    min-width: 200px;
     display: none;
 }
 .dws-menu li:hover > ul{

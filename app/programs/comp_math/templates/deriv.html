@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Производные{% endblock %}
+{% block scripts %}
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+{% endblock %}
+{% block text %}
+<article>
+    <form method="get">
+        <p>
+        <p>
+            <input type="text" name="function" id="function" size=40
+            placeholder="Введите функцию: x**2 + y**3, x y"
+            value="{{ params['function'] if params['function'] }}" /> 
+            <input type="text" name="ranges" id="ranges" size=20
+            placeholder="Диапазоны: -1 1, 1 5" value="{{ params['ranges'] if
+            params['ranges'] else "-10 10"}}"/>
+            <input type="number" name="n" id="n" min=10 max=2000 size=10
+            placeholder="N" value="{{ params['n'] if params['n'] else 100 }}"/>
+            <input type="text" name="d0" id="d0" size=20
+            placeholder="Точка касания: 1 2" value="{{ params['d0'] if
+            params['d0'] }}"/>
+        </p>
+            <input type="submit" value="Решение"/>
+        </p>
+    </form>
+    
+    {% if error %}
+    <p><b>Error:</b> {{ error }}</p>
+    {% endif %}
+    {% if result %}
+    <h2>Результат:</h2>
+    <p>{{ result['text'] }}</p>
+    <iframe src="{{ url_for('.result') }}" width="950" height="650" 
+       scrolling="no" frameborder="0"></iframe>
+    {% endif %}
+</article>
+{% endblock %}
