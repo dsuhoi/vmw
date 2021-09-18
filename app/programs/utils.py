@@ -1,0 +1,21 @@
+from flask import request, render_template
+
+def render_decorator(render_file, arg_list):
+    def decorator(func):
+        def wrapper():
+            result = None
+            try:
+                params = {}
+                task_get = request.args.get('task_list')
+                for arg in arg_list:
+                    params[arg] = request.args.get(arg)
+                if params[arg_list[0]] and params[arg_list[0]]!='':
+                    result = {}
+                    result['text'] = func(task_get, params, result)
+            except Exception as e:
+                raise e
+                return render_template(render_file, params=params, error=e.__str__())
+            else:
+                return render_template(render_file, params=params, result=result)
+        return wrapper
+    return decorator

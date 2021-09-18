@@ -4,14 +4,15 @@ import matplotlib.pyplot as plt
 
 
 def result(func):
-    def wrapper(matrix, **params):
+    def wrapper(params):
         fig = plt.figure(figsize=(9,6))
         ax = fig.add_subplot()
-        matrix = np.matrix(matrix)
+        matrix = np.matrix([[int(x) for x in row.split()] 
+        for row in params['matrix'].split('\r\n')])
         G = nx.from_numpy_matrix(matrix, create_using=nx.DiGraph)
         labels = {x: x+1 for x in range(G.number_of_nodes())}
 
-        result = func(G, ax, labels=labels, **params)
+        result = func(G, ax, labels=labels)
 
         return fig, result
     return wrapper

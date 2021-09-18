@@ -15,7 +15,7 @@ def result(func):
         sp.latex(sp.solveset(f_expr, domain=sp.S.Reals)) +\
         "$$ Численное решение: $$x_{числ.} = "
         result, num_iter = func(f, a, b, e)
-        return text + f"{result}" + f"$$ Число итераций равно {num_iter}."
+        return text + f"{result}$$ Число итераций равно {num_iter}."
     return wrapper
 
 @result
@@ -38,7 +38,7 @@ def simple_iter(f, a, b, e):
     cnt = 0
     v = 0.5
     sgn = lambda x: -1 if x < 0 else 1
-    f_a = derivative(f, a, dx=1e-8)
+    f_a = derivative(f, a, dx=e)
     alpha = -sgn(f_a)*v/(1+m.fabs(f_a))
     x_, x = a, a + alpha*f(a)
     while  m.fabs(x - x_) > e:

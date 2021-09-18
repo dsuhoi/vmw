@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block scripts %}
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+{% endblock %}
+{% block text %}
+<article>
+    <form method="get">
+        <p>
+            {% block input %}{% endblock %}
+            <input type="submit" value="Решение"/>
+        </p>
+    </form>
+    
+    {% if error %}
+    <p><b>Error:</b> {{ error }}</p>
+    {% endif %}
+    {% if result %}
+    <h2>Результат:</h2>
+    <p>{{ result['text'] }}</p>
+        {% if result['iframe'] %}
+        <iframe src="{{ url_for('.result') }}" width="100%" height="650" 
+           scrolling="no" frameborder="0"></iframe>
+        {% endif %}
+    {% endif %}
+</article>
+{% endblock %}

@@ -3,6 +3,8 @@ import sympy as sp
 from sympy.parsing.sympy_parser import parse_expr
 import numpy as np
 import matplotlib.pyplot as plt
+from mpld3 import plugins
+
 
 def result(func):
     def wrapper(params):
@@ -20,13 +22,12 @@ def result(func):
             ax.set_xlabel(var)
             ax.set_ylabel(f"f({var})")
         ax.grid(True)
-        ax.legend()
 
         f_parse = parse_expr(f_str)
         f = sp.lambdify(var, f_parse, "numpy")
 
-        result = func(f, var,  ax, f_parse, params)
-
+        plug, result = func(f, var,  ax, f_parse, params)
+        plugins.connect(fig, plug)
         return fig, result
     return wrapper
 
@@ -54,25 +55,30 @@ def derivative(f, var, ax, f_parse, params):
     d0 = None
     if params['d0'] and params['d0']!='':
         d0 = [float(x) for x in params['d0'].split()]
-
+    
+    lines = []
+    labels = [f"f({var})"]
+    res = str()
     x = np.linspace(ranges[0][0], ranges[0][1], n)
     if isinstance(var, tuple):
         y = np.linspace(ranges[1][0], ranges[1][1], n)
         X, Y = np.meshgrid(x, y)
-        ax.plot_surface(X, Y, f(X, Y), label=sp.latex(f_parse),
-            cmap='inferno')
-        res = "График построен."
+        lines.append(ax.plot_surface(X, Y, f(X, Y), cmap='inferno'))
         if d0:
             f2k, text = f2_k(f, d0[0], d0[1], X, Y)
-            ax.plot_surface(X, Y, f2k, label=text)
-            res = "Уравнение касательной плоскости: $$z = " + text + "$$"
+            lines.append(ax.plot_surface(X, Y, f2k))
+            labels.append("z")
+            res += "Уравнение касательной плоскости: $$z = " + text + "$$"
     else:
-        ax.plot(x, f(x), label=sp.latex(f_parse))
-        ax.plot(x, f_(f, x), "r--", label=sp.latex(sp.diff(f_parse)))
+        lines.append(ax.plot(x, f(x)))
+        lines.append(ax.plot(x, f_(f, x), "r--"))
+        labels.append(f"f'({var})")
         res = f"$$ f'({var}) = " + sp.latex(sp.diff(f_parse, var))
         if d0:
             fk, text = f_k(f, d0[0], x)
-            ax.plot(x, fk, "y", label=text)
+            lines.append(ax.plot(x, fk, "y"))
+            labels.append("y")
             res += f", f'({d0[0]}) = {round(f_(f, d0[0]), 3)}, $$Уравнение касательной: $$y = " + text
         res += "$$"
-    return res + "График:"
+    plug = plugins.InteractiveLegendPlugin(lines, labels)
+    return plug, res + "График:"

@@ -1,0 +1,17 @@
+{% extends "form.html" %}
+{% block title %}Интерполирование{% endblock %}
+{% block input %}
+    <p><textarea name="coords" id="coords" rows=5 placeholder=
+"Координаты:
+1 2
+3 4
+5 6">{{ params['coords'] if params['coords'] }}</textarea></p> 
+    <input type="text" name="range" id="range" size=20 placeholder="Интервал: -5 5"
+    value="{{ params['range'] if params['range'] }}"/>
+    <input type="number" name="n" id="n" size=8 min="10" max="2000"
+    placeholder="N" value="{{ params['n'] if params['n'] else 100 }}" />
+    <select id="task_list" name="task_list">
+        <option value="lagran">Лагранж</option>
+        <option value="neuton">Ньютон</option>
+    </select>
+{% endblock %}
