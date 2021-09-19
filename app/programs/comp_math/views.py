@@ -4,6 +4,7 @@ from .modules import nae as nae_module
 from .modules import snae as snae_module
 from .modules import interp as interp_module
 from .modules import diff as diff_module
+from .modules import optimize as opt_module
 from app.programs.utils import render_decorator
 from flask import request, render_template
 import mpld3
@@ -37,7 +38,6 @@ def deriv():
 def nae():
     @render_decorator('nae.html', ['function', 'range', 'e'])
     def function(task, params, config):
-        result = None
         if task == 'half_del':
             result = nae_module.half_del(params)
         elif task == 'simple_iter':
@@ -80,3 +80,15 @@ def diff():
         return result
     return function()
 
+
+@compm.route('/optimize', methods=['GET'])
+def optimize():
+    @render_decorator('optimize.html', ['function', 'd0', 'dx', 'e'])
+    def function(task, params, config):
+        result = None
+        if task == 'gaus_zeid':
+            result = opt_module.gaus_zeid(params)
+        elif task == 'relax':
+            result = opt_module.relax(params)
+        return result
+    return function()

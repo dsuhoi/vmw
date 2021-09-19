@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 def result(func):
     def wrapper(params):
         var_str, *func_str = [row for row in params['functions'].split("\r\n")] 
-        func_list = [sp.lambdify(var_str.split(), parse_expr(row)) for row in func_str]
+        func_list = [sp.lambdify(var_str.split(), parse_expr(row), "numpy") for row in func_str]
         d0 = [float(x) for x in params['d0'].split()]
         text = "Аналитическое решение: $$x_{аналит.} = " +\
         sp.latex(sp.solve([parse_expr(row) for row in func_str], var_str.split(), domain=sp.S.Reals)) +\

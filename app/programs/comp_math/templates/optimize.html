@@ -1,0 +1,21 @@
+{% extends "form.html" %}
+{% block title %}Многомерная оптимизация{% endblock %}
+{% block input %}
+    <input type="text" name="function" id="function" size=40
+    placeholder="y*x + y*cos(x), x y"
+    value="{{ params['function'] if params['function'] }}" /> 
+    <input type="text" name="d0" id="d0" size=20
+    placeholder="Нач. значения: 0 1" value="{{ params['d0'] if params['d0'] }}" />
+    <input type="text" name="dx" id="dx" size=12 placeholder="Шаг интегр." 
+    value="{{ params['dx'] if params['dx'] else "0.01" }}" />
+    <input type="text" name="e" id="e" size=12 placeholder="Точность" 
+    value="{{ params['e'] if params['e'] else "0.001" }}" />
+    <select id="task_list" name="task_list">
+        <optgroup label="Методы детерминир. поиска">
+            <option value="gaus_zeid">Метод Гаусса-Зейделя</option>
+        </optgroup>
+        <optgroup label="Методы градиентного поиска">
+            <option value="relax">Метод релаксаций</option>
+        </optgroup>
+    </select>
+{% endblock %}
