@@ -11,11 +11,11 @@
     <input type="text" name="e" id="e" size=12 placeholder="Точность" 
     value="{{ params['e'] if params['e'] else "0.001" }}" />
     <select id="task_list" name="task_list">
-        <optgroup label="Методы детерминир. поиска">
-            <option value="gaus_zeid">Метод Гаусса-Зейделя</option>
-        </optgroup>
         <optgroup label="Методы градиентного поиска">
             <option value="relax">Метод релаксаций</option>
+        </optgroup>
+        <optgroup label="Методы детерминир. поиска">
+            <option value="gaus_zeid">Метод Гаусса-Зейделя</option>
         </optgroup>
     </select>
 {% endblock %}

@@ -19,7 +19,7 @@ def result(func):
     return wrapper
 
 @result
-def half_del(f, a, b, e):
+def half_det(f, a, b, e):
     cnt = 0
     c = (b+a)/2
     while not ((m.fabs((b-a)/2) <= e) or m.isclose(f(c), 0)):
@@ -34,7 +34,7 @@ def half_del(f, a, b, e):
     return c, cnt
 
 @result
-def simple_iter(f, a, b, e):
+def simple_iter(f, a, _, e):
     cnt = 0
     v = 0.5
     sgn = lambda x: -1 if x < 0 else 1

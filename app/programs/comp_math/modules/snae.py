@@ -11,12 +11,10 @@ def result(func):
         var_str, *func_str = [row for row in params['functions'].split("\r\n")] 
         func_list = [sp.lambdify(var_str.split(), parse_expr(row), "numpy") for row in func_str]
         d0 = [float(x) for x in params['d0'].split()]
-        text = "Аналитическое решение: $$x_{аналит.} = " +\
-        sp.latex(sp.solve([parse_expr(row) for row in func_str], var_str.split(), domain=sp.S.Reals)) +\
+        text = "Эталонное решение: $$x_{эталон.} = " +\
+        sp.latex([round(x, 5) for x in fsolve(lambda x: [f(*x) for f in func_list], d0, epsfcn=float(1e-8))]) +\
         "$$ Численное решение: $$x_{числ.} = "
         result, num_iter = func(func_list, d0, float(params['e']))
-        #result = fsolve(lambda x: [f(*x) for f in func_list], d0,
-        #    epsfcn=float(params['e']))
         return text + f"{sp.latex(result)}$$ Число итераций равно {num_iter}."
     return wrapper
 

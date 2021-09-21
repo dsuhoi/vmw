@@ -38,8 +38,8 @@ def deriv():
 def nae():
     @render_decorator('nae.html', ['function', 'range', 'e'])
     def function(task, params, config):
-        if task == 'half_del':
-            result = nae_module.half_del(params)
+        if task == 'half_det':
+            result = nae_module.half_det(params)
         elif task == 'simple_iter':
             result = nae_module.simple_iter(params)
         return result

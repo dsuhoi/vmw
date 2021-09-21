@@ -1,4 +1,5 @@
 from scipy.misc import derivative
+from scipy.integrate import odeint
 import sympy as sp
 from sympy.parsing.sympy_parser import parse_expr
 import numpy as np
@@ -16,30 +17,24 @@ def result(func):
         coord = float(params['coord'])
 
         var_s = var_str.split()
-        f_2 = sp.lambdify(var_s, parse_expr(func_str.replace(var_s[1] + f"({var_s[0]})", var_s[1])), "numpy")
-        x = sp.Symbol(var_s[0])
-        f = sp.Function(var_s[1])
+        x = np.linspace(d0[0], coord, 200)
+        f_2 = sp.lambdify(var_s, parse_expr(func_str), "numpy")
         
-        equal = sp.Eq(f(x).diff(x), parse_expr(func_str))
-        expr_full = sp.dsolve(equal, f(x))
-        expr_res = sp.dsolve(equal, ics={f(d0[0]): d0[1]})
-        expr_d0 = expr_res.subs(x, coord)
-        text = "Аналитическое решение: $$" + sp.latex(expr_full) +\
-        "$$$$" + sp.latex(expr_res) + f"\qquad {var_s[1]}({d0[0]}) = {d0[1]}" +\
-        "$$$$" + sp.latex(expr_d0) + f"$$Численное решение: $${var_s[1]}({var_s[0]})"+"_{числ.} = "
+        res_sc = odeint(lambda y, x: f_2(x, y), d0[1], x)
+        
+        text = f"Эталонное решение: $${var_s[1]}({var_s[0]})_" + "{эталон.} = " +\
+        f"{res_sc[-1]}$$Численное решение: $${var_s[1]}({var_s[0]})"+"_{числ.} = "
         
         ax.set_xlabel(var_s[0])
         ax.set_ylabel(var_s[1] + f"({var_s[0]})")
         ax.grid(True)
-        x = np.linspace(d0[0] - m.fabs(d0[0]), coord + m.fabs(coord), 200)
-        df = sp.lambdify(var_s[0], expr_res.args[1], "numpy")
-        ax.plot(x, df(x))
+        ax.plot(x, res_sc)
         
         result = func(f_2, d0, coord, dx)
         
         ax.scatter(coord, result, c='r', s=20)
 
-        delta = m.fabs(expr_d0.args[1] - result)/m.fabs(result)
+        delta = m.fabs(res_sc[-1] - result)/m.fabs(result)
         return fig, text + f"{result}$$Относительная погрешность: $${delta}$$График:"
     return wrapper
 

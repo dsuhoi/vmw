@@ -20,8 +20,8 @@ def result(func):
 
         x, y, i = func(f, d0, dx, e)
         
-        text += "Численное решение: $$x_{числ.} = " + f"{x}" +\
-        "$$$$f(x)_{числ.} = " + f"{y}$$Число итераций равно {i}."
+        text += "Численное решение: $$x_{числ.} = " + f"{[round(i,6) for i in x]}" +\
+        "$$$$f(x)_{числ.} = " + f"{round(y,6)}$$Число итераций равно {i}."
         return text
     return wrapper
 
@@ -43,14 +43,15 @@ def gaus_zeid(f, d0, h, e):
         opt_flag = True
         for j in range(d0.size):
             cnt += 1
-            Ra = R(f, minimum[0], j, h)
-            Rb = R(f, minimum[0], j, -h)
-            temp = min([Ra, Rb, minimum[1]])
-            if temp < minimum[1]:
+            Ra = 1, R(f, minimum[0], j, h)
+            Rb = -1, R(f, minimum[0], j, -h)
+            temp = min([Ra, Rb, minimum], key=lambda x: x[1])
+            if temp[1] < minimum[1]:
                 opt_flag = False
-                d = 1 if temp == Ra else -1
+                d = temp[0]
+                minimum[0][j] += d*h
+                minimum[1] = temp[1]
                 x = minimum[0].copy()
-                x[j] += d*h
                 while True:
                     x[j] += d*h
                     temp = f(*x)
@@ -59,10 +60,14 @@ def gaus_zeid(f, d0, h, e):
                         minimum[1] = temp
                     else:
                         break
+        
         if opt_flag:
             h /= 2
         else:
             opt_flag = True
+
+        if cnt > 1e6:
+            break
 
     return minimum[0].tolist(), minimum[1], cnt
 
@@ -70,13 +75,14 @@ def gaus_zeid(f, d0, h, e):
 def relax(f, d0, h, e):
     minimum = [d0.copy(), f(*d0)]
     cnt = 0
-    opt_flag = {x: False for x in range(d0.size)}
+    opt_flag = [False for x in range(d0.size)]
     while h > e:
         cnt += 1
         R_list = [R_(f, minimum[0], i, e) for i in range(d0.size)]
         r_min = R_list.index(max(R_list, key=lambda x: m.fabs(x)))
         if opt_flag[r_min] == True:
             h /= 2
+            opt_flag[r_min] = False
         else:
             opt_flag[r_min] = True
         d = -1 if R_list[r_min] > 0 else 1
