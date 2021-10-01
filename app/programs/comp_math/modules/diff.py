@@ -6,6 +6,10 @@ import numpy as np
 import math as m
 import matplotlib.pyplot as plt
 
+
+
+
+
 def result(func):
     def wrapper(params):
         fig = plt.figure(figsize=(9,6))
@@ -39,6 +43,7 @@ def result(func):
     return wrapper
 
 
+
 def euler_method(next_y):
     def wrapper(f, d0, coord, dx):
         ys = []
@@ -49,6 +54,15 @@ def euler_method(next_y):
             y = next_y(x, y)
         return ys
     return wrapper
+
+@result
+def euler(f, d0, coord, dx):
+    @euler_method
+    def _euler_method(xi, yi):
+        nonlocal f, dx
+        return yi + dx*f(xi, yi)
+
+    return _euler_method(f, d0, coord, dx)[-1]
 
 @result
 def mod_euler(f, d0, coord, dx):
@@ -72,3 +86,15 @@ def euler_koshi(f, d0, coord, dx):
 
     return euler_koshi_method(f, d0, coord, dx)[-1]
 
+@result
+def runge_kutt(f, d0, coord, dx):
+    @euler_method
+    def runge_kutt_method(xi, yi):
+        nonlocal f, dx
+        h2 = dx / 2
+        k1 = f(xi, yi)
+        k2 = f(xi + h2, yi + h2 * k1)
+        k3 = f(xi + h2, yi + h2 * k2)
+        k4 = f(xi + dx, yi + dx * k3)
+        return yi + (dx / 6) * (k1 + 2 * k2 + 2 * k3 + k4)
+    return runge_kutt_method(f, d0, coord, dx)[-1]

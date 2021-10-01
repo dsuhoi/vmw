@@ -11,7 +11,9 @@
     <input type="text" name="dx" id="dx" size=12 placeholder="Шаг интегр." 
     value="{{ params['dx'] if params['dx'] else "0.01" }}" />
     <select id="task_list" name="task_list">
+        <option value="euler">Метод Эйлера</option>
         <option value="mod_euler">Модифицированный метод Эйлера</option>
         <option value="euler_koshi">Метод Эйлера-Коши</option>
+        <option value="runge_kutt">Метод Рунге-Кутты 4-го порядка</option>
     </select>
 {% endblock %}

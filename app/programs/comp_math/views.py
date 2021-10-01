@@ -73,10 +73,14 @@ def diff():
     def function(task, params, config):
         global g_result_html
         config['iframe'] = True
-        if task == 'mod_euler':
+        if task == 'euler':
+            g_result_html, result = diff_module.euler(params)
+        elif task == 'mod_euler':
             g_result_html, result = diff_module.mod_euler(params)
         elif task == 'euler_koshi':
             g_result_html, result = diff_module.euler_koshi(params)
+        elif task == 'runge_kutt':
+            g_result_html, result = diff_module.runge_kutt(params)
         return result
     return function()
 
