@@ -14,7 +14,7 @@ def result():
 
 @dscm.route('/')
 def index():
-    return render_template('discrete_math.html')
+    return render_template('linalg.html')
 
 @dscm.route('/graphs', methods=['GET'])
 def graphs():

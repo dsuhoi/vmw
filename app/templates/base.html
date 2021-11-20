@@ -33,7 +33,11 @@
                             <li><a href="{{ url_for('programs.discrete_math.graphs') }}">Графы</a></li>
                         </ul>
                         </li>
-                        <li><a href="#">Линейная алгебра</a></li>
+                        <li><a href="{{ url_for('programs.linalg.index') }}">Линейная алгебра</a>
+                        <ul>
+                            <li><a href="{{ url_for('programs.linalg.matrix') }}">Матрицы</a></li>
+                        </ul>
+                        </li>
                     </ul>
                     </li>
                     <li><a href="#">Статьи</a></li>
