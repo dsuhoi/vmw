@@ -8,6 +8,10 @@ class config(object):
     DEBUG = False
     # Включение защиты против "Cross-site Request Forgery (CSRF)"
     CSRF_ENABLED = True
+    
+    # База данных
+
+
 
 class production_config(config):
     DEBUG = False
