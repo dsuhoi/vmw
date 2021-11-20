@@ -1,4 +1,5 @@
 import os
+from sys import platform
 
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -31,3 +32,6 @@ class production_config(config):
 class development_config(config):
     DEVELOPMENT = True
     DEBUG = True
+    SQLALCHEMY_DATABASE_URI = \
+        "sqlite:////" if platform == "linux" or platform == "linux2" else "sqlite:///" +\
+            os.path.join(BASEDIR, "articles.db")
