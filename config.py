@@ -1,6 +1,11 @@
 import os
 
+BASEDIR = os.path.abspath(os.path.dirname(__file__))
+
 class config(object):
+    # Секретный ключ
+    SECRET_KEY = os.getenv('SECRET_KEY') or 'random_string'
+
     # Определяет, включен ли режим отладки
     # В случае если включен, flask будет показывать
     # подробную отладочную информацию. Если выключен -
@@ -10,7 +15,14 @@ class config(object):
     CSRF_ENABLED = True
     
     # База данных
-
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_DATABASE_URI = "sqlite:////" + os.path.join(BASEDIR, "articles.db")
+    
+    FLASK_ADMIN_SWATCH = 'cerulean'
+    
+    # Вход в панель админа
+    BASIC_AUTH_USERNAME = 'admin'
+    BASIC_AUTH_PASSWORD = os.getenv('ADMIN_PASSWORD') or 'admin'
 
 
 class production_config(config):
