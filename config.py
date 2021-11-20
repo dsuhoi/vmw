@@ -33,5 +33,5 @@ class development_config(config):
     DEVELOPMENT = True
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = \
-        "sqlite:////" if platform == "linux" or platform == "linux2" else "sqlite:///" +\
+        ("sqlite:////" if platform == "linux" or platform == "linux2" else "sqlite:///") +\
             os.path.join(BASEDIR, "articles.db")
