@@ -1,6 +1,15 @@
 {% extends "base.html" %}
+{% block title %}Статьи{% endblock %}
 {% block text %}
 <article>
-    <p>Здесь будут размещены блоки со статьями.</p>
+    <p><h2>Статьи</h2></p>
+    <ul> {% for chapter in post_dict %}
+    <li>
+        <b>{{chapter}}</b>
+        <ul> {% for post in post_dict[chapter] %}
+            <li><a href="{{ url_for('post.page', post_id=post.id) }}">{{post.title}}</a></li>{% endfor %}
+        </ul>
+    </li> {% endfor %}
+    </ul>
 </article>
 {% endblock %}

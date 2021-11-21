@@ -8,4 +8,4 @@ class Articles(db.Model):
     content = db.Column(db.Text(), nullable=False, default='Текст')
 
     def __repr__(self):
-	    return "<{}:{}>".format(self.id,  self.title[:10])
+	    return "<{}:{}>".format(self.id,  self.title)
