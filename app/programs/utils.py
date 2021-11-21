@@ -5,10 +5,8 @@ def render_decorator(render_file, arg_list):
         def wrapper():
             result = None
             try:
-                params = {}
                 task_get = request.args.get('task_list')
-                for arg in arg_list:
-                    params[arg] = request.args.get(arg)
+                params = {arg: request.args.get(arg) for arg in arg_list}
                 if params[arg_list[0]] and params[arg_list[0]]!='':
                     result = {}
                     result['text'] = func(task_get, params, result)
