@@ -1,8 +1,10 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask_basicauth import BasicAuth
 
 db = SQLAlchemy()
+migrate = Migrate()
 basic_auth = BasicAuth()
 
 def create_app(config_env):
@@ -10,6 +12,7 @@ def create_app(config_env):
     app.config.from_object(config_env)
     
     db.init_app(app)
+    migrate.init_app(app, db)
     basic_auth.init_app(app)
 
     from .main import main as main_blueprint
