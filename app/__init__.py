@@ -17,10 +17,12 @@ def create_app(config_env):
 
     from .main import main as main_blueprint
     from .programs import programs as programs_blueprint
+    from .post import post as post_blueprint
 
     app.register_blueprint(main_blueprint, url_prefix='/')
     app.register_blueprint(programs_blueprint, url_prefix='/programs')
-
+    app.register_blueprint(post_blueprint, url_prefix='/post')
+    
     from .admin import create_admin
     admin = create_admin(app)
 

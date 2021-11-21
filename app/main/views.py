@@ -17,3 +17,7 @@ def about():
 @main.route('/program')
 def program():
     return render_template('graph.html')
+
+@main.route('/post')
+def articles():
+    return render_template('post.html')
