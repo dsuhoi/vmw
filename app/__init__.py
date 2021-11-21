@@ -9,7 +9,7 @@ basic_auth = BasicAuth()
 
 def create_app(config_env):
     app = Flask(__name__)
-    app.config.from_object(config_env)
+    app.config.from_object(config_env or "config")
     
     db.init_app(app)
     migrate.init_app(app, db)
@@ -22,7 +22,7 @@ def create_app(config_env):
     app.register_blueprint(main_blueprint, url_prefix='/')
     app.register_blueprint(programs_blueprint, url_prefix='/programs')
     app.register_blueprint(post_blueprint, url_prefix='/post')
-
+    
     from .admin import create_admin
     admin = create_admin(app)
 

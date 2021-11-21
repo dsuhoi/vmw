@@ -18,6 +18,6 @@ def about():
 def program():
     return render_template('graph.html')
 
-@main.route('/articles')
+@main.route('/post')
 def articles():
-    return render_template('articles.html')
+    return render_template('post.html')
