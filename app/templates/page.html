@@ -3,6 +3,6 @@
 {% block title %}{{data.title}}{% endblock %}
 {% block text %}
 <article>
-    <p>{{data.content}}</p>
+    {{data.content |safe }}
 </article>
 {%endblock %}
