@@ -1,4 +1,3 @@
-from numbers import Rational
 import networkx as nx
 import sympy as sp
 import numpy as np
@@ -8,29 +7,23 @@ def result(func):
     def wrapper(params):
         matrix = sp.Matrix([[sp.Rational(x) for x in row.split()] 
         for row in params['matrix'].split('\r\n')])
-        result = func(matrix)
-        return array_to_LaTeX(np.array(matrix))+result
+        result, text = func(matrix)
+        return text + sp.latex(matrix) + '=' + result +'$$'
     return wrapper
 
-def array_to_LaTeX(arr):
-    arr = arr.astype("str")
-    nrow = arr.shape[0]
-    rows = [" & ".join(arr[i,:].tolist()) for i in range(nrow)]
-    return "\\begin{vmatrix} " + " \\\\ ".join(rows) + " \\end{vmatrix}"
 
 @result
 def determ(a):
-    text = sp.latex(sp.Rational(str(a.det())))
-    return '$$='+ text + '$$'
+    return sp.latex(sp.Rational(a.det())), '$$det'
 
 @result
 def inv(a):
-    return a**(-1)
+    return sp.latex(a**(-1)), '$$inv'
 
 @result
 def eigenval(a):
-    return a.eigenvals()
+    return sp.latex(a.eigenvals()), '$$eigenvalues'
 
 @result
 def eigenvec(a):
-    return a.eigenvects()
+    return sp.latex(a.eigenvects()), '$$eigenvectors'

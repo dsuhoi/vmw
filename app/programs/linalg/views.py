@@ -12,7 +12,7 @@ def index():
 def matrix():
     @render_decorator('matrix.html', ['matrix'])
     def function(task, params, config):
-        global g_result_html
+        # global g_result_html
         # config['iframe'] = True
         text = None
         if task=='determ':
