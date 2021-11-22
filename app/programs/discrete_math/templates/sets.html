@@ -1,0 +1,19 @@
+{% extends "form.html" %}
+{% block title %}Графы{% endblock %}
+{% block input %}
+    <p>
+    <textarea name="sets" id="sets" rows=3 placeholder="Множества"
+
+    width=200 height=50>{{ params['sets'] if params['sets'] }}</textarea>   
+    </p>
+    <p>
+        <textarea name="operations" id="operations" rows=3 placeholder="Операции"
+    
+        width=200 height=50>{{ params['operations'] if params['operations'] }}</textarea>   
+    </p>
+    <select id="task_list" name="task_list">
+        <option value="union">Объединение множеств</option>
+        <!-- <option value="planar">Планарность</option>
+        <option value="chromatic">Хроматическое число</option> -->
+    </select>
+{% endblock %}
