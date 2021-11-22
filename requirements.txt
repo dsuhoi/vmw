@@ -30,7 +30,7 @@ requests==2.26.0
 scipy==1.7.1
 six==1.16.0
 SQLAlchemy==1.4.27
-sympy==1.8
+sympy==1.9
 urllib3==1.26.7
 Werkzeug==2.0.1
 WTForms==2.3.3
