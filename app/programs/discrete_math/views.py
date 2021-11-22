@@ -3,6 +3,7 @@ from app.programs.utils import render_decorator
 from flask import request, render_template
 import mpld3
 from .modules import graph as graph_module
+from .modules import sets as sets_module
 
 # График для генерации
 g_result_html = None
@@ -30,5 +31,14 @@ def graphs():
         elif task=='chromatic':
             figure, text = graph_module.chromatic(params)
         g_result_html = mpld3.fig_to_html(figure)
+        return text
+    return function()
+
+
+@dscm.route('/sets', methods=['GET'])
+def sets():
+    @render_decorator('sets.html', ['sets'])
+    def function(task, params, config):
+        text = sets_module.sets_solve(params)
         return text
     return function()

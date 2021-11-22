@@ -1,0 +1,15 @@
+{% extends "form.html" %}
+{% block title %}Графы{% endblock %}
+{% block input %}
+    <p>
+    <textarea name="sets" id="sets" rows=6 placeholder=
+"A{a,1,2,3}
+B{b,2}
+C{a,75,0}
+A|B&C"
+
+    width=200 height=100>{{ params['sets'] if params['sets'] }}</textarea>   
+    </p>
+    
+    
+{% endblock %}
