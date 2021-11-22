@@ -39,8 +39,6 @@ def graphs():
 def sets():
     @render_decorator('sets.html', ['sets'])
     def function(task, params, config):
-        text = None
-        if task == 'union':
-            text = sets_module.Union(params)
+        text = sets_module.sets_solve(params)
         return text
     return function()

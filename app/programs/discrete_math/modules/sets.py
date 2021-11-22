@@ -3,16 +3,23 @@ import sympy as sp
 
 def result(func):
     def wrapper(params):
+        lst = str(params['sets']).split(str(str(params['sets']).split('\r\n')[-1]))[0].replace('\r\n','').split('}')
+        lst.pop(-1)
+        sets = {}
+        for i in lst:
+            sets[i.split('{')[0]]=sp.FiniteSet(*i.split('{')[1].split(','))
+        oper = str(params['sets']).split('\r\n')[-1]
 
-        lst = params['sets'].replace('},{','|').replace('{','').replace('}','').split('|')
-        sets = []
-        for l in lst:
-            sets.append((sp.FiniteSet(*l.split(','))))
-        
-        result = func(*sets)
-        return "$$" + result + "$$"
+        result = func(*oper,**sets)
+        return "$$" + result +"$$"
     return wrapper
 
 @result
-def Union(*sets):
-    return sp.latex(sp.Union(*sets))
+def sets_solve(*oper,**sets):
+    text = ''
+    for i in range(len(oper)):
+        if i%2==0:
+            text+=str(sets[oper[i]])
+        else:
+            text+=oper[i]
+    return sp.latex(sp.parse_expr(text))
