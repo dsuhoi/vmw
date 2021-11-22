@@ -5,12 +5,10 @@
 {% block text %}
 <article>
     <form method="get">
-        <p>
-            {% block input %}{% endblock %}
+        <p>{% block input %}{% endblock %}
             <input type="submit" value="Решение"/>
         </p>
     </form>
-    
     {% if error %}
     <p><b>Error:</b> {{ error }}</p>
     {% endif %}

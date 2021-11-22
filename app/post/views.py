@@ -11,7 +11,7 @@ def index():
     return render_template('post.html', post_dict=articles_dict)
 
 
-@post.route('/page/<post_id>')
+@post.route('/<post_id>')
 def page(post_id):
     articles = Articles.query
     return render_template('page.html', data=articles.get(post_id))
