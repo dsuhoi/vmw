@@ -1,7 +1,4 @@
 {% extends "base.html" %}
-{% block scripts %}
-<script id="MathJax-script" async src="{{ url_for('static', filename='js/mathjax/tex-chtml.js') }}"></script>
-{% endblock %}
 {% block text %}
 <article>
     <form method="get">
@@ -12,6 +9,7 @@
     {% if error %}
     <p><b>Error:</b> {{ error }}</p>
     {% endif %}
+{% block data %}
     {% if result %}
     <h2>Результат:</h2>
     <p>{{ result['text'] }}</p>
@@ -20,5 +18,6 @@
            scrolling="no" frameborder="0"></iframe>
         {% endif %}
     {% endif %}
+{% endblock %}
 </article>
 {% endblock %}
