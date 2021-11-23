@@ -10,8 +10,8 @@ def result(func):
             sets[i.split('{')[0]]=sp.FiniteSet(*i.split('{')[1].split(','))
         oper = str(params['sets']).split('\r\n')[-1]
 
-        result = func(*oper,**sets)
-        return "$$" + result +"$$"
+        result,text = func(*oper,**sets)
+        return "$$" + text + '=' + result +"$$"
     return wrapper
 
 @result
@@ -22,4 +22,4 @@ def sets_solve(*oper,**sets):
             text+=str(sets[oper[i]])
         else:
             text+=oper[i]
-    return sp.latex(sp.parse_expr(text))
+    return sp.latex(sp.parse_expr(text)), sp.latex(text)
