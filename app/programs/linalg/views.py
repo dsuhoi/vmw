@@ -1,8 +1,8 @@
 from . import linalg as lng
 from app.programs.utils import render_decorator
 from flask import request, render_template
-# import mpld3
 from .modules import matrix as matrix_module
+from .modules import vectors as vectors_module
 
 @lng.route('/')
 def index():
@@ -24,5 +24,25 @@ def matrix():
         elif task=='eigenvec':
             text = matrix_module.eigenvec(params)
         # g_result_html = mpld3.fig_to_html(figure)
+        return text
+    return function()
+
+@lng.route('/vectors', methods=['GET'])
+def vectors():
+    @render_decorator('vectors.html', ['matrix'])
+    def function(task, params, config):
+        text = None
+        if task=='mod':
+            text = vectors_module.mod(params)
+        elif task == 'sum':
+            text = vectors_module.sum(params)
+        elif task == 'dif':
+            text = vectors_module.dif(params)
+        elif task == 'scalmult':
+            text = vectors_module.scalmult(params)
+        elif task == 'vecmult':
+            text = vectors_module.vecmult(params)
+        elif task == 'mixmult':
+            text = vectors_module.mixmult(params)
         return text
     return function()
