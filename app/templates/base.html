@@ -5,7 +5,29 @@
         <link href="{{ url_for('static', filename='css/style.css') }}"
           rel="stylesheet"  type="text/css">
         <title>{% block title %}ВМП{% endblock %}</title>
-        {% block scripts%}{% endblock %}
+        {% block scripts%}
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: {
+                    extensions: ["AMSmath.js", "AMSsymbols.js", "noErrors.js", "noUndefined.js"]
+                },
+                "HTML-CSS": {
+                    minScaleAdjust: 100
+                },
+                menuSettings: {
+                    context: "MathJax",
+                    zoom: "Hover",
+                    ALT: true
+                },
+                MathZoom: {
+                    delay: 100
+                },
+                extensions: ["tex2jax.js"]
+            });
+        </script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+        {% endblock %}
     </head>
     <body>
         <div class="wrapper">

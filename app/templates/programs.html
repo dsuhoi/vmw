@@ -4,3 +4,13 @@
 <input type="text" name="answer" id="answer" size=100
 placeholder="Введите команду" value="{{ answer if answer }}" />
 {% endblock %}
+
+{% block data %}
+{% if result %}
+<p><h2>Результат</h2></p>
+<p>Условие</p>
+$$ {{result['input']}}$$
+<p>Решение</p>
+$$ {{result['output']}} $$
+{% endif %}
+{% endblock %}
