@@ -15,10 +15,11 @@ import sympy
 from sympy.solvers.diophantine import diophantine
 """
 
+OTHER_SYMPY_FUNCTIONS = ('sqrt',)
+
 Arguments = collections.namedtuple('Arguments', 'function args kwargs')
 
 SYNONYMS = {
-    u'упрощение': 'simplify',
     u'derivative': 'diff',
     u'derive': 'diff',
     u'integral': 'integrate',
