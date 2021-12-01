@@ -10,5 +10,4 @@ programs.register_blueprint(discrete_math)
 programs.register_blueprint(linalg)
 
 
-
 from . import views
