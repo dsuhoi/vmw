@@ -7,12 +7,13 @@
 4 5 6
 7 8 9"
 
-    width=100 height=100>{{ params['matrix'] if params['matrix'] }}</textarea>
+    width=200 height=100>{{ params['matrix'] if params['matrix'] }}</textarea>
     </p>
     <select id="task_list" name="task_list">
         <option value="determ">Определитель</option>
         <option value="inv">Обратная матрица</option>
         <option value="eigenval">Собственные числа</option>
         <option value="eigenvec">Собственные векторы</option>
+        <option value="operations">Операции</option>
     </select>
 {% endblock %}

@@ -8,7 +8,7 @@ def result(func):
         sets = {}
         for i in lst:
             sets[i.split('{')[0]]=sp.FiniteSet(*i.split('{')[1].split(','))
-        oper = str(params['sets']).split('\r\n')[-1]
+        oper = list(str(sp.expand(params['sets'].split('\r\n')[-1])).replace(' ',''))
 
         result,text = func(*oper,**sets)
         return "$$" + text + '=' + result +"$$"

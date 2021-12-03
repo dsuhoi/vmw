@@ -23,6 +23,8 @@ def matrix():
             text = matrix_module.eigenval(params)
         elif task=='eigenvec':
             text = matrix_module.eigenvec(params)
+        elif task=='operations':
+            text = matrix_module.operation(params)
         # g_result_html = mpld3.fig_to_html(figure)
         return text
     return function()
