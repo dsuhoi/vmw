@@ -30,6 +30,8 @@ def graphs():
             figure, text = graph_module.planar(params)
         elif task=='chromatic':
             figure, text = graph_module.chromatic(params)
+        elif task=='dijkstra':
+            figure,text = graph_module.dijkstra(params)
         g_result_html = mpld3.fig_to_html(figure)
         return text
     return function()

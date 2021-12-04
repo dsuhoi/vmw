@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 def result(func):
     def wrapper(params):
-        if str(params['matrix']).count('\n')>0:
+        if str(params['matrix']).count('\r\n')>0:
             matrix,oper = parse_operations(params)
         else:
             matrix,oper = parse_one(params)
@@ -16,7 +16,7 @@ def result(func):
 
 
 def parse_operations(params):
-    lst = params['matrix'].split(params['matrix'].split('\n')[-1])[0].split('\n')
+    lst = params['matrix'].split(params['matrix'].split('\r\n')[-1])[0].split('\r\n')
     lst.pop(-1)
     matrix = {}
     for i in lst:
@@ -25,7 +25,7 @@ def parse_operations(params):
         for j in t:
             b.append([sp.Rational(x) for x in j.split()])
         matrix[i.split('{')[0]] = sp.Matrix(b)
-    oper = list(str(sp.expand(params['matrix'].split('\n')[-1])).replace(' ', ''))
+    oper = list(str(sp.expand(params['matrix'].split('\r\n')[-1])).replace(' ', ''))
     return matrix,oper
 
 def parse_one(params):

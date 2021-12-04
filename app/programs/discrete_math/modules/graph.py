@@ -1,6 +1,7 @@
 import networkx as nx
 import numpy as np
 import matplotlib.pyplot as plt
+import sympy as sp
 
 
 def result(func):
@@ -54,3 +55,7 @@ def chromatic(G, ax, labels):
     nx.draw_circular(G, ax=ax, labels=labels, cmap=plt.get_cmap('viridis'),
             node_color=colors_of_nodes.values())
     return f"Хроматическое число равно {len(set(colors_of_nodes.values()))}."
+
+@result
+def dijkstra(G,ax,labels):
+    return f"Длина кратчайших путей равена $${sp.latex(nx.shortest_path_length(G, source=0, weight='weight'))}$$\nКратчайшие пути:$${sp.latex(nx.shortest_path(G,source=1,weight='weight'))}$$"
