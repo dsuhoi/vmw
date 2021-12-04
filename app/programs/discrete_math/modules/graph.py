@@ -58,4 +58,5 @@ def chromatic(G, ax, labels):
 
 @result
 def dijkstra(G,ax,labels):
+    nx.draw_circular(G, ax=ax, labels=labels)
     return f"Длина кратчайших путей равена $${sp.latex(nx.shortest_path_length(G, source=0, weight='weight'))}$$\nКратчайшие пути:$${sp.latex(nx.shortest_path(G,source=1,weight='weight'))}$$"
