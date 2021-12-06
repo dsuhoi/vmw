@@ -4,10 +4,12 @@ from sympy.parsing.sympy_parser import (
     standard_transformations, function_exponentiation, 
     implicit_application, NAME, convert_xor, split_symbols
 )
+from sympy.core.function import FunctionClass
 import sympy
 import collections
 import sys
 import ast
+import re
 
 PREEXEC = """from __future__ import division
 from sympy import *
@@ -102,6 +104,23 @@ class Eval(object):
             return ""
 
 
+class TopCallVisitor(ast.NodeVisitor):
+    def __init__(self):
+        super(TopCallVisitor, self).__init__()
+        self.call = None
+
+    def visit_Call(self, node):
+        self.call = node
+
+    def visit_Name(self, node):
+        if not self.call:
+            self.call = node
+
+    def visit_NameConstant(self, node):
+        if not self.call:
+            self.call = node
+
+
 class LatexVisitor(ast.NodeVisitor):
     EXCEPTIONS = {'integrate': sympy.Integral, 'diff': sympy.Derivative}
     formatters = {}
@@ -153,11 +172,74 @@ class LatexVisitor(ast.NodeVisitor):
         return self.latex
 
 
+re_calls = re.compile(r'(Integer|Symbol|Float|Rational)\s*\([\'\"]?([a-zA-Z0-9\.]+)[\'\"]?\s*\)')
+
+def removeSymPy(string):
+    try:
+        return re_calls.sub(re_calls_sub, string)
+    except IndexError:
+        return string
+
+def arguments(string_or_node, evaluator):
+    node = None
+    if not isinstance(string_or_node, ast.Call):
+        a = TopCallVisitor()
+        a.visit(ast.parse(string_or_node))
+
+        if hasattr(a, 'call'):
+            node = a.call
+    else:
+        node = string_or_node
+
+    if node:
+        if isinstance(node, ast.Call):
+            name = getattr(node.func, 'id', None)  # when is it undefined?
+            args, kwargs = None, None
+            if node.args:
+                args = list(map(evaluator.eval_node, node.args))
+
+            kwargs = node.keywords
+            if kwargs:
+                kwargs = {kwarg.arg: evaluator.eval_node(kwarg.value) for kwarg in kwargs}
+
+            return Arguments(name, args, kwargs)
+        elif isinstance(node, ast.Name):
+            return Arguments(node.id, [], {})
+
+        elif isinstance(node, ast.NameConstant):
+            return Arguments(node.value, [], {})
+    return None
+
+
 def latexify(string, evaluator):
     a = LatexVisitor()
     a.evaluator = evaluator
     a.visit(ast.parse(string))
     return a.latex
+
+
+def latex_result(parsed, evaluator, evaluated):
+    argument = arguments(parsed, evaluator)
+
+    first_func_name = argument[0]
+    is_function = False
+
+    first_func = evaluator.get(first_func_name)
+    is_function = (
+        first_func and
+        not isinstance(first_func, FunctionClass) and
+        not isinstance(first_func, sympy.Atom) and
+        first_func_name and first_func_name[0].islower() and
+        not first_func_name in OTHER_SYMPY_FUNCTIONS) and (argument.args or argument.kwargs)
+    
+    if is_function:
+        latex_input = latexify(parsed, evaluator)
+    else:
+        latex_input = latex(evaluated)
+   
+    result = {'input': latex_input, 'output': latex(evaluated)}
+
+    return result
 
 
 def vmw_eval(s):
@@ -171,6 +253,4 @@ def vmw_eval(s):
     parsed = stringify_expr(s, {}, namespace, transformations)
     evaluated = eval_expr(parsed, {}, namespace)
     
-    result = {'input': latexify(parsed, evaluator), 'output': latex(evaluated)}
-
-    return result
+    return latex_result(parsed, evaluator, evaluated)
