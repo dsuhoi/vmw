@@ -24,5 +24,8 @@
         {% endif %}
     {% endif %}
 {% endblock %}
+    {% if instruction %}
+        <a href="{{ url_for('post.page', post_id=instruction.id) }}">Инструкция</a>
+    {% endif %}
 </article>
 {% endblock %}
