@@ -13,6 +13,7 @@
     {% if result %}
     <h2>Результат:</h2>
     <p>{{ result['text'] | safe }}</p>
+
         {% if result['iframe'] %}
             <div id='chart' class='chart'></div>
             <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
