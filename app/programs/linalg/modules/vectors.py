@@ -1,7 +1,6 @@
 import networkx as nx
 import sympy as sp
 import numpy as np
-import matplotlib.pyplot as plt
 
 def result(func):
     def wrapper(params):

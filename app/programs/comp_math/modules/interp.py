@@ -1,31 +1,27 @@
 import scipy.misc as sc
 import numpy as np
 import math as m
-import matplotlib.pyplot as plt
-from mpld3 import plugins
+import json
+import plotly
+import plotly.graph_objects as go
+
 
 def result(func):
     def wrapper(params):
-        fig = plt.figure(figsize=(9,6))
-        ax = fig.add_subplot()
-        ax.set_xlabel('x')
-        ax.set_ylabel('f(x)')
-        ax.grid(True)
-        line_colect = []
+        fig = go.Figure()
         coords = np.array([[float(x) for x in pair.split()] for pair in params['coords'].split("\r\n")])
         rng = [float(x) for x in params['range'].split()]
         n = int(params['n'])
         x = np.linspace(rng[0], rng[1], n)
         np.append(x, coords[:,0])
         x.sort()
-        line_colect.append(ax.scatter(coords[:,0], coords[:,1], c='r', s=20))
+        fig.add_trace(go.Scatter(x=coords[:,0], y=coords[:,1], mode="markers"))
 
         y, (p, e) = func(coords, x)
-        line_colect.append(ax.plot(x, y, "b--"))
-        plugins.connect(fig, plugins.InteractiveLegendPlugin(line_colect,
-            ["Точки", "Функция интерполяции"]))
-        
-        return fig, f"Коэффициенты полинома: $${p}$$RMSE: $${e}$$График:"
+        fig.add_trace(go.Scatter(x=x, y=y))
+        fig.update_layout(width=1000, height=1000)
+        graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)        
+        return graphJSON, f"Коэффициенты полинома: $${p}$$RMSE: $${e}$$График:"
     return wrapper
 
 def rmse(a, a_):

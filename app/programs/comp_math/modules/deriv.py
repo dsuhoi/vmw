@@ -2,33 +2,22 @@ import scipy.misc as sc
 import sympy as sp
 from sympy.parsing.sympy_parser import parse_expr
 import numpy as np
-import matplotlib.pyplot as plt
-from mpld3 import plugins
-
+import json
+import plotly
+import plotly.graph_objects as go
 
 def result(func):
     def wrapper(params):
-        fig = plt.figure(figsize=(9,6))
-        ax = None
         f_str, var_str = params['function'].split(",")
         var = sp.symbols(var_str)
-        if isinstance(var, tuple):
-            ax = fig.add_subplot(111, projection='3d')
-            ax.set_zlabel('z')
-            ax.set_xlabel(var[0])
-            ax.set_ylabel(var[1])
-        else:
-            ax = fig.add_subplot()
-            ax.set_xlabel(var)
-            ax.set_ylabel(f"f({var})")
-        ax.grid(True)
 
         f_parse = parse_expr(f_str)
         f = sp.lambdify(var, f_parse, "numpy")
 
-        plug, result = func(f, var,  ax, f_parse, params)
-        plugins.connect(fig, plug)
-        return fig, result
+        fig, result = func(f, var, f_parse, params)
+        fig.update_layout(width=1000, height=1000)
+        graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+        return graphJSON, result
     return wrapper
 
 
@@ -48,37 +37,33 @@ def f2_k(f, x0, y0, x, y):
     return k_x*(x - x0) + k_y*(y - y0) + f(x0, y0), text
 
 @result
-def derivative(f, var, ax, f_parse, params):
+def derivative(f, var, f_parse, params):
     ranges = [[float(d) for d in r.split()] for r in
             params['ranges'].split(",")]
     n = int(params['n'])
     d0 = None
     if params['d0'] and params['d0']!='':
         d0 = [float(x) for x in params['d0'].split()]
-    
-    lines = []
-    labels = [f"f({var})"]
+   
+    fig = go.Figure()
     res = str()
+
     x = np.linspace(ranges[0][0], ranges[0][1], n)
     if isinstance(var, tuple):
         y = np.linspace(ranges[1][0], ranges[1][1], n)
-        X, Y = np.meshgrid(x, y)
-        lines.append(ax.plot_surface(X, Y, f(X, Y), cmap='inferno'))
+        X, Y = np.meshgrid(x,y)
+        fig.add_trace(go.Surface(x=X, y=Y, z=f(X,Y), colorscale='Viridis', name=f"f({var})"))
         if d0:
             f2k, text = f2_k(f, d0[0], d0[1], X, Y)
-            lines.append(ax.plot_surface(X, Y, f2k))
-            labels.append("z")
+            fig.add_trace(go.Surface(x=x, y=y, z=f2k, colorscale='Viridis', name=text))
             res += "Уравнение касательной плоскости: $$z = " + text + "$$"
     else:
-        lines.append(ax.plot(x, f(x)))
-        lines.append(ax.plot(x, f_(f, x), "r--"))
-        labels.append(f"f'({var})")
+        fig.add_trace(go.Scatter(x=x, y=f(x), name=f"f({var})"))
+        fig.add_trace(go.Scatter(x=x, y=f_(f, x), name=f"f'({var})"))
         res = f"$$ f'({var}) = " + sp.latex(sp.diff(f_parse, var))
         if d0:
             fk, text = f_k(f, d0[0], x)
-            lines.append(ax.plot(x, fk, "y"))
-            labels.append("y")
+            fig.add_trace(go.Scatter(x=x, y=fk, name=text))
             res += f", f'({d0[0]}) = {round(f_(f, d0[0]), 3)}, $$Уравнение касательной: $$y = " + text
         res += "$$"
-    plug = plugins.InteractiveLegendPlugin(lines, labels)
-    return plug, res + "График:"
+    return fig, res + "График:"

@@ -12,8 +12,6 @@ def index():
 def matrix():
     @render_decorator('matrix.html', ['matrix'])
     def function(task, params, config):
-        # global g_result_html
-        # config['iframe'] = True
         text = None
         if task=='determ':
             text = matrix_module.determ(params)
@@ -25,7 +23,6 @@ def matrix():
             text = matrix_module.eigenvec(params)
         elif task=='operations':
             text = matrix_module.operation(params)
-        # g_result_html = mpld3.fig_to_html(figure)
         return text
     return function()
 

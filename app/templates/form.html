@@ -12,10 +12,14 @@
 {% block data %}
     {% if result %}
     <h2>Результат:</h2>
-    <p>{{ result['text'] }}</p>
+    <p>{{ result['text'] | safe }}</p>
         {% if result['iframe'] %}
-        <iframe src="{{ url_for('.result') }}" width="100%" height="650" 
-           scrolling="no" frameborder="0"></iframe>
+            <div id='chart' class='chart'></div>
+            <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+            <script type='text/javascript'>
+              var graphs = {{result['graphJSON'] | safe}};
+              Plotly.plot('chart',graphs,{});
+            </script>
         {% endif %}
     {% endif %}
 {% endblock %}

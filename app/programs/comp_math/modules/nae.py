@@ -3,7 +3,6 @@ import sympy as sp
 from sympy.parsing.sympy_parser import parse_expr
 import numpy as np
 import math as m
-import matplotlib.pyplot as plt
 
 def result(func):
     def wrapper(params):

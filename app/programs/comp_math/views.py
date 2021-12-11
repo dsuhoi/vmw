@@ -7,16 +7,9 @@ from .modules import diff as diff_module
 from .modules import optimize as opt_module
 from app.programs.utils import render_decorator
 from flask import request, render_template
-import mpld3
 
 
-# График для генерации
-g_result_html = None
 
-@compm.route('/result')
-def result():
-    global g_result_html
-    return mpld3.fig_to_html(g_result_html)
 
 @compm.route('/')
 def index():
@@ -27,9 +20,9 @@ def index():
 def deriv():
     @render_decorator('deriv.html', ['function', 'ranges', 'n', 'd0'])
     def function(task, params, config):
-        global g_result_html
+        graphJSON, result = der.derivative(params)
+        config['graphJSON'] = graphJSON
         config['iframe'] = True
-        g_result_html, result = der.derivative(params)
         return result
     return function()
 
@@ -58,12 +51,12 @@ def snae():
 def interp():
     @render_decorator('interp.html', ['coords', 'range', 'n'])
     def function(task, params, config):
-        global g_result_html
-        config['iframe'] = True
         if task == 'lagran':
-            g_result_html, result = interp_module.lagran(params)
+            graphJSON, result = interp_module.lagran(params)
         elif task == 'neuton':
-            g_result_html, result = interp_module.neuton(params)
+            graphJSON, result = interp_module.neuton(params)
+        config['iframe'] = True
+        config['graphJSON'] = graphJSON
         return result
     return function()
 
@@ -71,16 +64,14 @@ def interp():
 def diff():
     @render_decorator('diff.html', ['function', 'd0', 'dx', 'coord'])
     def function(task, params, config):
-        global g_result_html
-        config['iframe'] = True
         if task == 'euler':
-            g_result_html, result = diff_module.euler(params)
+            result = diff_module.euler(params)
         elif task == 'mod_euler':
-            g_result_html, result = diff_module.mod_euler(params)
+            result = diff_module.mod_euler(params)
         elif task == 'euler_koshi':
-            g_result_html, result = diff_module.euler_koshi(params)
+            result = diff_module.euler_koshi(params)
         elif task == 'runge_kutt':
-            g_result_html, result = diff_module.runge_kutt(params)
+            result = diff_module.runge_kutt(params)
         return result
     return function()
 

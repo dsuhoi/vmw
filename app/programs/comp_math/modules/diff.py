@@ -4,42 +4,27 @@ import sympy as sp
 from sympy.parsing.sympy_parser import parse_expr
 import numpy as np
 import math as m
-import matplotlib.pyplot as plt
-
-
-
 
 
 def result(func):
     def wrapper(params):
-        fig = plt.figure(figsize=(9,6))
-        ax = fig.add_subplot()
-        
         func_str, var_str = (x for x in params['function'].split(","))
         d0 = [float(x) for x in params['d0'].split()]
         dx = float(params['dx'])
         coord = float(params['coord'])
 
         var_s = var_str.split()
-        x = np.linspace(d0[0], coord, 200)
         f_2 = sp.lambdify(var_s, parse_expr(func_str), "numpy")
+        x = np.linspace(d0[0], coord, 200)
         
-        res_sc = odeint(lambda y, x: f_2(x, y), d0[1], x)
+        res_sc = odeint(lambda y, x: f_2(x,y), d0[1], x)
         
         text = f"Эталонное решение: $${var_s[1]}({var_s[0]})_" + "{эталон.} = " +\
         f"{res_sc[-1]}$$Численное решение: $${var_s[1]}({var_s[0]})"+"_{числ.} = "
-        
-        ax.set_xlabel(var_s[0])
-        ax.set_ylabel(var_s[1] + f"({var_s[0]})")
-        ax.grid(True)
-        ax.plot(x, res_sc)
-        
-        result = func(f_2, d0, coord, dx)
-        
-        ax.scatter(coord, result, c='r', s=20)
 
+        result = func(f_2, d0, coord, dx)
         delta = m.fabs(res_sc[-1] - result)/m.fabs(result)
-        return fig, text + f"{result}$$Относительная погрешность: $${delta}$$График:"
+        return text + f"{result}$$Относительная погрешность: $${delta}$$"
     return wrapper
 
 
