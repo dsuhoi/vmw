@@ -1,194 +1,204 @@
-* {
-    box-sizing: border-box;
-}
-
-html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, ul, li{
-                 
+body{
     margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    vertical-align: baseline;
+
+    font-family: FoglihtenNo06,Roboto;
+    color: #000000;
+}
+/*CONTAINER*/
+.container{
+    width: 100%;
+    max-width: 1330px;
+    margin:0 auto; 
+}
+/*HEADER*/
+
+.header{
+    position: absolute;
+    align-items: center;
+
 }
 
-body {
-    font-family: Verdana, Arial, sans-serif;    
-    background-color: #f7f7f7;
+.header_inner{
+    display: flex;
+    justify-content: space-between;
+    padding: 54px 0;
 }
 
-header{ 
-    background-color: #f4f4f4;
+.search{
+    align-items: center;
+    width: 174px;
+
+}
+.search .search_box{
+    position: relative;
+    width: 174px;
+    height: 28px;
+}
+.input{
+    
+    border:0;
+    outline: none;
+    font-family: FoglihtenNo06;
+    font-size: 14px;
+    color:#000;
+}
+.search .search_box .input{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100px;
+    height: 100%
+
+
+}
+.search .search_box .btn{
+    position:absolute;
+    top:0;
+    right:0;
+
+    height: 100%
+
+}
+.header1{
+    width: 100%;
+    max-width: 1330px;
+    margin:0 auto; 
+    display: flex;
+    
+}
+.banner{
+    position: static;
+    
+
+    max-width: 440px;
+    margin:0px 0px 0px 0px; 
+    
+
+}
+.banner .text{
+    text-align: left;
+    padding-bottom:5px;
+
+}
+.w{
+    margin:0 ;
+    font-family: FoglihtenNo06;
+    font-size:140px;    
+}
+.v{
+    margin-top: -20px;
+    margin-left: 15px;
 }
 
-header h1 {
-    font-size: 24px;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding: 10px 10px 10px 10px;
-    clear: both;
-}
+.menu{
+    height: 300px;
+    margin-left: 150px;
+    margin-top:110px;
+    
 
-nav {
-    background-color: #eee;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
 }
-
-.wrapper{
-    background-color: #f7f7f7;
+.menu a{
+    text-decoration:none;
 }
-.wrapper li{ 
-    list-style-type: none;
-}
-.aside h2 {
-    font-size: 0.95em;
-    margin-top: 15px;
-}
-
-.aside h3 {
-    font-size: 0.85em;
-    margin-top: 10px;
-}
-
-.aside p, .aside li {
-    font-size: .75em;
-    margin-top: 10px;   
-}
-
-/*****************************************/
-
-.dws-menu *{
-    z-index: 1;
-    margin: 0;
-    padding: 0;
-}
-.dws-menu ul,
-.dws-menu ol{
+.menu li{
     list-style: none;
 }
-.dws-menu > ul{
+.menu_list{
+    width: 840px;
+    margin:0;
     display: flex;
-    justify-content: center;
+
+
 }
-.dws-menu > ul li a{
-    display: block;
-    background: #ececed;
-    padding: 15px 30px 15px 40px;
-    font-size: 14px;
-    color: #454547;
-    text-decoration: none;
-    text-transform:uppercase;
+.menu_list>li{
+    width: 350px;
+
+
+    font-size: 45px;
+    
+    
+
 }
-.dws-menu > ul li{
-    position: relative;
+.menu_list>li:hover .sub_list{
+    display: flex;
 }
-.dws-menu > ul li > a i.fa{
-    position: absolute;
-    top: 15px;
-    left: 12px;
-    font-size: 18px;
+
+.menu_link{
+    justify-content: space-around;
+    color: #000;
 }
-.dws-menu > ul li:first-child{
-    border-left: 1px solid #b2b3b5;
-}
-.dws-menu > ul li:last-child{
-    border-right: 1px solid #babbbd;
-}
-.dws-menu > ul li{
-    position: relative;
-    border-right: 1px solid #c7c8ca;
-}
-.dws-menu li a:hover{
-    background: #454547;
-    color: #ffffff;
-    box-shadow: 1px 5px 10px -5px black;
-    transition: all 0.3s ease;
-}
-.dws-menu > ul li a{
-    display: block;
-    background: #ececed;
-    padding: 15px 30px 15px 40px;
-    font-size: 14px;
-    color: #454547;
-    text-decoration: none;
-    text-transform:uppercase;
-    transition: all 0.3s ease;
-} 
-.dws-menu li ul{
-    position: absolute;
-    min-width: 200px;
-}    
-.dws-menu li > ul li{
-    border: 1px solid #c7c8ca;
-}
-.dws-menu li > ul li a{
-    padding: 10px;
-    text-transform: none;
-    background: #e4e4e5;
-}
-.dws-menu li > ul li ul{
-    position: absolute;
-    right: -200px;
-    top: 0;
-}
-.dws-menu li ul{
-    position: absolute;
-    min-width: 200px;
+
+.sub_list{
+    background-color: #fff;
+    font-family: Roboto;
+
+    font-size: 15px;
     display: none;
-}
-.dws-menu li:hover > ul{
-    display: block;
-}    
-/**************************/
+    margin-top:20px;
+    margin-left: -40px;
 
-#sidebar1 {
-    float: left;
-    width: 20%;
-    padding: 0 20px 0 10px;
 }
+.sub_link{
 
-#sidebar2 {
-    float: right;
-    width: 20%; 
-    padding: 0 20px 0 10px;
+    color: #000;
+}
+.sub_list li{
+
+    min-width:250px;
+}
+.sub-sub_link{
+    color: #000;
 }
 
-article{
-    background-color: #fafafa;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    margin-left: 20%;
-    margin-right: 20%;
-    padding: 25px;
-    width: 60%;
+.sub-sub_list li{
+    margin-top:5px;
+    margin-left: -15px;
+
 }
 
-article:after, #main:after{
-    clear:both;
-    display:table;
-    content:'';
-}
-article h2, main h2{
-    font-size: 1.3em;
-    margin-bottom:15px;
-}
-article p, main p{
-    line-height: 150%;
-    margin-bottom: 15px;
+
+
+.articles{
+    position: relative;
+    display: inline-block;
+    height: 670px;
+    width: 100%;
+    max-width: 1330px;
+    margin:45px 0px 45px 0px; 
 }
 
-/**********Основные стили************/
-main{
-    background-color: #fafafa;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    margin-left: 20%;
-    /*margin-right: 20%;*/
-    padding: 25px;
-    width: 80%;
+.articles .img{
+    margin-left: 900px;
+    margin-right:260px;
+    height: 620px;
+    width: 678px;
 }
-/**********************************/
-footer{ 
+.articles .text{
+    position: absolute;
+}
+.articles .title{
+    font-size: 70px;
+    margin-left: 400px;
+    margin-right:1000px;
+    margin-bottom: 5px;
+}
+
+
+.articles .about{
+    font-family: Roboto;
+    margin-top: 0px;
+    margin-left: 480px;
+    margin-right:1000px;
+    height: 250px;
+    width: 180px;
+}
+.articles .link{
+    color:#000;
+
+}
+
+
+.footer{
     border-top: 1px solid #ccc;
     font-size: .8em;    
     text-align: center;
