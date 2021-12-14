@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <link href="{{ url_for('static', filename='css/style.css') }}"
           rel="stylesheet"  type="text/css">
-       <title>VMW | Виртуальный Математический Практикум </title>
-        {% block scripts%}
+       <title>{% block title %}VMW | Виртуальный Математический Практикум </title>
+        {% block scripts%}{% endblock %}
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({
                 jax: ["input/TeX", "output/HTML-CSS"],
@@ -34,119 +34,88 @@
         {% endblock %}
     </head>
     <body>
-    <main>
-        <header>
-            <div class="container">
-                <div class="header_inner">
-                    <div class="logo">
-                        <img src="img/Group 2.png">
-                    </div>
-                    
-                    <div class="search">
-                        <div class="search_box">
-                            <div class="btn">
-                                <img src="img/search_box.png">
-                            </div>
-                            <input type="text" class="input" placeholder="Поиск">
+        <main>
+            <header>
+                <div class="container">
+                    <div class="header_inner">
+                        <div class="logo">
+                            <img src="img/Group 2.png">
                         </div>
                         
-                    </div>
-                </div>
-            
-            </div>
-        </header>
-        <div class="header1">
-            <section class="banner">
-
-                <div class="text">
-                    <p class="w">VMW</p>
-                    <p class="v">ВИРТУАЛЬНЫЙ МАТЕМАТИЧЕСКИЙ ПРАКТИКУМ</p>
-                </div>
-            
-            </section>
-            <nav class="menu">
-                        <ul class="menu_list">
-                            <li><a class="menu_link" href="{{ url_for('programs.index') }}">Программы</a>
-                            <ul class="sub_list">
-                                <li><a class="sub_link" href="{{ url_for('programs.comp_math.index') }}">Вычислительная математика</a>
-                                <ul class="sub-sub_list">
-                                    <li><a class="sub-sub_link" href="{{ url_for('programs.comp_math.deriv')}}">Производные</a></li>
-                                    <li><a class="sub-sub_link" href="#">Нелинейные алгебраические 
-                                    уравнения</a></li>
-                                    <li><a class="sub-sub_link" href="#">Системы НАУ</a></li>
-                                    <li><a class="sub-sub_link" href="#">Интерполирование</a></li>
-                                    <li><a class="sub-sub_link" href="#">Дифференциальныеуравнения</a></li>
-                                    <li><a class="sub-sub_link" href="#">Многомерная оптимизация</a></li>
-                                </ul>
-                                </li>
-                                <li><a class="sub_link" href="#">Дискретная математика</a>
-                                <ul class="sub-sub_list">
-                                    <li><a class="sub-sub_link" href="#">Графы</a></li>
-                                    <li><a class="sub-sub_link" href="#">Множества</a></li>
-                                </ul>
-                                </li>
-                                <li><a class="sub_link" href="#">Линейная алгебра</a>
-                                <ul class="sub-sub_list">
-                                    <li><a class="sub-sub_link" href="#">Матрицы</a></li>
-                                    <li><a class="sub-sub_link" href="#">Вектора</a></li>
-                                    </ul>
-                                    </li>
-                                </ul>
-                                </li>
-                                <li><a class="menu_link" href="#">Статьи</a>
-                                <ul class="sub_list">
-                                <li><a class="sub_link" href="#">Вычислительная математика</a>
-                                <ul class="sub-sub_list">
-                                    <li><a class="sub-sub_link" href="#">Производные</a></li>
-                                    <li><a class="sub-sub_link" href="#">Нелинейные алгебраические 
-                                    уравнения</a></li>
-                                    <li><a class="sub-sub_link" href="#">Системы НАУ</a></li>
-                                    <li><a class="sub-sub_link" href="#">Интерполирование</a></li>
-                                    <li><a class="sub-sub_link" href="#">Дифференциальныеуравнения</a></li>
-                                    <li><a class="sub-sub_link" href="#">Многомерная оптимизация</a></li>
-                                </ul>
-                                </li>
-                                <li><a class="sub_link" href="#">Дискретная математика</a>
-                                <ul class="sub-sub_list">
-                                    <li><a class="sub-sub_link" href="#">Графы</a></li>
-                                    <li><a class="sub-sub_link" href="#">Множества</a></li>
-                                </ul>
-                                </li>
-                                <li><a class="sub_link" href="#">Линейная алгебра</a>
-                                <ul class="sub-sub_list">
-                                    <li><a class="sub-sub_link" href="#">Матрицы</a></li>
-                                    <li><a class="sub-sub_link" href="#">Вектора</a></li>
-                                    </ul>
-                                    </li>
-                                </ul></li>
-                            </ul>
-                        </nav>
-                </div>
-                <div class="articles">
-                    <div class="source">
-                        <div class="text">
-                            <p class="title">Численное решение дифференциальных уравнений</p>
-                            <div class="about">
-                                <p  >Дифференциальные уравнения делятся на две категории в зависимости от числа переменных:
-                            обыкновенные
-                            дифференциальные уравнения,
-                            содержащие одну независимую переменную, и уравнения с частными
-                            производными, содержащие несколько независимых переменных</p>
-                                <a class="link" href="#">Читать далее</a>
+                        <div class="search">
+                            <div class="search_box">
+                                <div class="btn">
+                                    <img src="img/search_box.png">
+                                </div>
+                                <input type="text" class="input" placeholder="Поиск">
                             </div>
+                            
                         </div>
-                        <img class="img" src="img/dif.png">
                     </div>
-                    
+                
                 </div>
-        <div class="footer">
-            <footer>
-                    <p>Contacts: <a href="https://github.com/dsuhoi">
-                        https://github.com/dsuhoi</a></p>
-                    <p>Copyright © DSuhoi, 2021</p>
-            </footer>
-        </div>
-    </main>
+            </header>
+            <div class="header1">
+                <section class="banner">
+
+                    <div class="text">
+                        <p class="w">VMW</p>
+                        <p class="v">ВИРТУАЛЬНЫЙ МАТЕМАТИЧЕСКИЙ ПРАКТИКУМ</p>
+                    </div>
+                
+                </section>
+                <nav class="menu">
+                    <ul class="menu_list">
+                        <li><a class="menu_link" href="{{ url_for('programs.index') }}">Программы</a>
+                        <ul class="sub_list">
+                            <li><a class="sub_link" href="{{ url_for('programs.comp_math.index') }}">Вычислительная математика</a>
+                            <ul class="sub-sub_list">
+                                <li><a class="sub-sub_link" href="{{ url_for('programs.comp_math.deriv')}}">Производные</a></li>
+                                <li><a class="sub-sub_link" href="#">Нелинейные алгебраические 
+                                уравнения</a></li>
+                                <li><a class="sub-sub_link" href="#">Системы НАУ</a></li>
+                                <li><a class="sub-sub_link" href="#">Интерполирование</a></li>
+                                <li><a class="sub-sub_link" href="#">Дифференциальныеуравнения</a></li>
+                                <li><a class="sub-sub_link" href="#">Многомерная оптимизация</a></li>
+                            </ul>
+                            </li>
+                            <li><a class="sub_link" href="#">Дискретная математика</a>
+                            <ul class="sub-sub_list">
+                                <li><a class="sub-sub_link" href="#">Графы</a></li>
+                                <li><a class="sub-sub_link" href="#">Множества</a></li>
+                            </ul>
+                            </li>
+                            <li><a class="sub_link" href="#">Линейная алгебра</a>
+                            <ul class="sub-sub_list">
+                                <li><a class="sub-sub_link" href="#">Матрицы</a></li>
+                                <li><a class="sub-sub_link" href="#">Вектора</a></li>
+                                </ul>
+                                </li>
+                            </ul>
+                            </li>
+                            <li><a class="menu_link" href="#">Статьи</a>
+                                    
+                            </li>
+                        </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+                    {% block text %}
+                        <main>
+                            <p>Main Text</p>
+                        </main>
+                    {% endblock %}
+
+            <div class="footer">
+                <footer>
+                        <p>Contacts: <a href="https://github.com/dsuhoi">
+                            https://github.com/dsuhoi</a></p>
+                        <p>Copyright © DSuhoi, 2021</p>
+                </footer>
+            </div>
+        </main>
 
     </body>
 </html>
