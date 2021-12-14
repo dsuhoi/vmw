@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <link href="{{ url_for('static', filename='css/style.css') }}"
           rel="stylesheet"  type="text/css">
-       <title>{% block title %}VMW | Виртуальный Математический Практикум </title>
-        {% block scripts%}{% endblock %}
+       <title>{% block title %}VMW | Виртуальный Математический Практикум </title>{% endblock %}
+        {% block scripts%}
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({
                 jax: ["input/TeX", "output/HTML-CSS"],
@@ -29,9 +29,9 @@
                 },
                 extensions: ["tex2jax.js"]
             });
+        {% endblock %}
         </script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML-full"></script>
-        {% endblock %}
     </head>
     <body>
         <main>
@@ -39,13 +39,13 @@
                 <div class="container">
                     <div class="header_inner">
                         <div class="logo">
-                            <img src="img/Group 2.png">
+                            <img src="{{ url_for('static',filename='img/Group 2.png') }}">
                         </div>
                         
                         <div class="search">
                             <div class="search_box">
                                 <div class="btn">
-                                    <img src="img/search_box.png">
+                                    <img src="{{ url_for('static',filename='img/search_box.png') }}">
                                 </div>
                                 <input type="text" class="input" placeholder="Поиск">
                             </div>
@@ -93,7 +93,7 @@
                                 </li>
                             </ul>
                             </li>
-                            <li><a class="menu_link" href="#">Статьи</a>
+                            <li><a class="menu_link" href="{{ url_for('post.index') }}">Статьи</a>
                                     
                             </li>
                         </ul>

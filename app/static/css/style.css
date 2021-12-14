@@ -1,3 +1,9 @@
+@font-face{
+    font-family: FoglihtenNo06,Roboto;
+    src: url("{{ url_for('static', filename='font/FoglihtenNo06.ttf') }}");
+    src: url("{{ url_for('static', filename='font/Roboto-Regular.ttf') }}");
+
+}
 body{
     margin: 0;
 
@@ -6,6 +12,8 @@ body{
 }
 /*CONTAINER*/
 .container{
+    text-align: center;
+    align-items: center;
     width: 100%;
     max-width: 1330px;
     margin:0 auto; 
@@ -25,14 +33,19 @@ body{
 }
 
 .search{
+    text-align: center;
     align-items: center;
     width: 174px;
 
 }
 .search .search_box{
-    position: relative;
+    text-align: center;
+    align-items: center;
+    display: inline-block;
+    position: absolute;
     width: 174px;
     height: 28px;
+
 }
 .input{
     
@@ -41,13 +54,15 @@ body{
     font-family: FoglihtenNo06;
     font-size: 14px;
     color:#000;
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.1), 1px 1px 5px rgba(255, 255, 255, 1);
 }
 .search .search_box .input{
-    position: absolute;
+
+
     top:0;
     left:0;
-    width: 100px;
-    height: 100%
+    width: 180px;
+    height: 130%
 
 
 }
