@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <link href="{{ url_for('static', filename='css/style.css') }}"
           rel="stylesheet"  type="text/css">
-       <title>{% block title %}VMW | Виртуальный Математический Практикум </title>
+        <title>{% block title %}VMW | Виртуальный Математический Практикум{% endblock %}</title>
         {% block scripts%}{% endblock %}
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({
@@ -31,7 +31,6 @@
             });
         </script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML-full"></script>
-        {% endblock %}
     </head>
     <body>
         <main>
