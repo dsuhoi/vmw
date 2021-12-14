@@ -60,14 +60,14 @@ body{
 
     top:0;
     left:5px;
-    width: 180px;
+    width: 120px;
     height: 100%
 
 }
 .search .search_box .btn{
     position: absolute;
     top:5px;
-    right:0px;
+    right:40px;
     height: 26;
 
 }
@@ -103,12 +103,19 @@ body{
 }
 
 .menu{
-    height: 300px;
+    height: 250px;
     margin-left: 150px;
     margin-top:110px;
+    width: 900px;
+    
     
 
 }
+.menu:hover {
+    box-shadow: 0px 4px 3px 1px rgba(0, 0, 0, 0.2);
+
+}
+
 .menu a{
     text-decoration:none;
 }
@@ -135,6 +142,7 @@ body{
     display: flex;
 }
 
+
 .menu_link{
     text-transform: uppercase;
     justify-content: space-around;
@@ -154,6 +162,7 @@ body{
 }
 .sub_link{
 
+
     color: #000;
 }
 .sub_list li{
@@ -161,10 +170,12 @@ body{
     min-width:250px;
 }
 .sub-sub_link{
+
     color: #000;
 }
 
 .sub-sub_list li{
+
     margin-top:5px;
     margin-left: -15px;
 
@@ -182,7 +193,7 @@ body{
 }
 
 .articles .img{
-    margin-left: 600px;
+    margin-left: 800px;
 
     height: 620px;
     width: 678px;
@@ -194,7 +205,7 @@ body{
     font-size: 70px;
 
     width: 678px;
-    margin-left: 350px;
+    margin-left: 450px;
 
     margin-bottom: 5px;
 }
@@ -202,11 +213,12 @@ body{
 
 .text .about{
     font-family: sans-serif;
+    font-size: 15px;
     margin-top: 0px;
-    margin-left: 480px;
+    margin-left: 580px;
     margin-right:1000px;
     height: 250px;
-    width: 180px;
+    width: 200px;
 }
 .articles .link{
     color:#000;
@@ -242,7 +254,7 @@ body{
 .slider1{
     position: relative;
     width: 100%;
-    max-width: 950px;
+    max-width: 1330px;
     margin:0 auto;
     height: 600px;
     background-color: #000;
@@ -258,14 +270,16 @@ body{
 .slider1 .item{
 
     color: #fff;
-    min-width: 310px;
+    min-width: 445px;
     height: 600px;
     line-height: 600px;
     text-align: center;
     max-height: 120px;
+    margin-bottom: 120px;
+    text-decoration:none;
+
 
 }
-
 
 
 
