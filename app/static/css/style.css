@@ -7,7 +7,7 @@
 body{
     margin: 0;
 
-    font-family: FoglihtenNo06,Roboto;
+    font-family: FoglihtenNo06,Roboto-Regular;
     color: #000000;
 }
 /*CONTAINER*/
@@ -27,22 +27,22 @@ body{
 }
 
 .header_inner{
+    text-align: center;
     display: flex;
     justify-content: space-between;
     padding: 54px 0;
+
 }
 
 .search{
-    text-align: center;
-    align-items: center;
+
     width: 174px;
 
 }
 .search .search_box{
     text-align: center;
-    align-items: center;
-    display: inline-block;
-    position: absolute;
+    margin:0 auto;
+    position: relative;
     width: 174px;
     height: 28px;
 
@@ -54,24 +54,21 @@ body{
     font-family: FoglihtenNo06;
     font-size: 14px;
     color:#000;
-    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.1), 1px 1px 5px rgba(255, 255, 255, 1);
+    box-shadow: 0px 4px 3px 1px rgba(0, 0, 0, 0.2);
 }
 .search .search_box .input{
 
-
     top:0;
-    left:0;
+    left:5px;
     width: 180px;
-    height: 130%
-
+    height: 100%
 
 }
 .search .search_box .btn{
-    position:absolute;
-    top:0;
-    right:0;
-
-    height: 100%
+    position: absolute;
+    top:5px;
+    right:0px;
+    height: 26;
 
 }
 .header1{
@@ -90,8 +87,8 @@ body{
     
 
 }
-.banner .text{
-    text-align: left;
+.search_box .text{
+
     padding-bottom:5px;
 
 }
@@ -139,14 +136,16 @@ body{
 }
 
 .menu_link{
+    text-transform: uppercase;
     justify-content: space-around;
     color: #000;
 }
 
 .sub_list{
     background-color: #fff;
-    font-family: Roboto;
+    font-family: sans-serif;
 
+    margin-right: 300px;
     font-size: 15px;
     display: none;
     margin-top:20px;
@@ -183,7 +182,7 @@ body{
 }
 
 .articles .img{
-    margin-left: 800px;
+    margin-left: 600px;
 
     height: 620px;
     width: 678px;
@@ -195,14 +194,14 @@ body{
     font-size: 70px;
 
     width: 678px;
-    margin-left: 450px;
+    margin-left: 350px;
 
     margin-bottom: 5px;
 }
 
 
-.articles .about{
-    font-family: Roboto;
+.text .about{
+    font-family: sans-serif;
     margin-top: 0px;
     margin-left: 480px;
     margin-right:1000px;
