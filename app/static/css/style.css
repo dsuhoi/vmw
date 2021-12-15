@@ -1,11 +1,19 @@
+@font-face{
+    font-family: FoglihtenNo06,Roboto;
+    src: url("{{ url_for('static', filename='font/FoglihtenNo06.ttf') }}");
+    src: url("{{ url_for('static', filename='font/Roboto-Regular.ttf') }}");
+
+}
 body{
     margin: 0;
 
-    font-family: FoglihtenNo06,Roboto;
+    font-family: FoglihtenNo06,Roboto-Regular;
     color: #000000;
 }
 /*CONTAINER*/
 .container{
+    text-align: center;
+    align-items: center;
     width: 100%;
     max-width: 1330px;
     margin:0 auto; 
@@ -19,20 +27,25 @@ body{
 }
 
 .header_inner{
+    text-align: center;
     display: flex;
     justify-content: space-between;
     padding: 54px 0;
+
 }
 
 .search{
-    align-items: center;
+
     width: 174px;
 
 }
 .search .search_box{
+    text-align: center;
+    margin:0 auto;
     position: relative;
     width: 174px;
     height: 28px;
+
 }
 .input{
     
@@ -41,22 +54,21 @@ body{
     font-family: FoglihtenNo06;
     font-size: 14px;
     color:#000;
+    box-shadow: 0px 4px 3px 1px rgba(0, 0, 0, 0.2);
 }
 .search .search_box .input{
-    position: absolute;
-    top:0;
-    left:0;
-    width: 100px;
-    height: 100%
 
+    top:0;
+    left:5px;
+    width: 120px;
+    height: 100%
 
 }
 .search .search_box .btn{
-    position:absolute;
-    top:0;
-    right:0;
-
-    height: 100%
+    position: absolute;
+    top:5px;
+    right:40px;
+    height: 26;
 
 }
 .header1{
@@ -75,8 +87,8 @@ body{
     
 
 }
-.banner .text{
-    text-align: left;
+.search_box .text{
+
     padding-bottom:5px;
 
 }
@@ -91,12 +103,19 @@ body{
 }
 
 .menu{
-    height: 300px;
+    height: 250px;
     margin-left: 150px;
     margin-top:110px;
+    width: 900px;
+    
     
 
 }
+.menu:hover {
+    box-shadow: 0px 4px 3px 1px rgba(0, 0, 0, 0.2);
+
+}
+
 .menu a{
     text-decoration:none;
 }
@@ -123,15 +142,18 @@ body{
     display: flex;
 }
 
+
 .menu_link{
+    text-transform: uppercase;
     justify-content: space-around;
     color: #000;
 }
 
 .sub_list{
     background-color: #fff;
-    font-family: Roboto;
+    font-family: sans-serif;
 
+    margin-right: 300px;
     font-size: 15px;
     display: none;
     margin-top:20px;
@@ -140,6 +162,7 @@ body{
 }
 .sub_link{
 
+
     color: #000;
 }
 .sub_list li{
@@ -147,10 +170,12 @@ body{
     min-width:250px;
 }
 .sub-sub_link{
+
     color: #000;
 }
 
 .sub-sub_list li{
+
     margin-top:5px;
     margin-left: -15px;
 
@@ -186,13 +211,14 @@ body{
 }
 
 
-.articles .about{
-    font-family: Roboto;
+.text .about{
+    font-family: sans-serif;
+    font-size: 15px;
     margin-top: 0px;
-    margin-left: 480px;
+    margin-left: 580px;
     margin-right:1000px;
     height: 250px;
-    width: 180px;
+    width: 200px;
 }
 .articles .link{
     color:#000;
@@ -228,7 +254,7 @@ body{
 .slider1{
     position: relative;
     width: 100%;
-    max-width: 950px;
+    max-width: 1330px;
     margin:0 auto;
     height: 600px;
     background-color: #000;
@@ -244,14 +270,16 @@ body{
 .slider1 .item{
 
     color: #fff;
-    min-width: 310px;
+    min-width: 445px;
     height: 600px;
     line-height: 600px;
     text-align: center;
     max-height: 120px;
+    margin-bottom: 120px;
+    text-decoration:none;
+
 
 }
-
 
 
 

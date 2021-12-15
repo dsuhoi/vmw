@@ -4,8 +4,9 @@
         <meta charset="utf-8">
         <link href="{{ url_for('static', filename='css/style.css') }}"
           rel="stylesheet"  type="text/css">
+
         <title>{% block title %}VMW | Виртуальный Математический Практикум{% endblock %}</title>
-        {% block scripts%}{% endblock %}
+        {% block scripts%}
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({
                 jax: ["input/TeX", "output/HTML-CSS"],
@@ -29,6 +30,7 @@
                 },
                 extensions: ["tex2jax.js"]
             });
+        {% endblock %}
         </script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML-full"></script>
     </head>
@@ -38,13 +40,13 @@
                 <div class="container">
                     <div class="header_inner">
                         <div class="logo">
-                            <img src="img/Group 2.png">
+                            <img src="{{ url_for('static',filename='img/Group 2.png') }}">
                         </div>
                         
                         <div class="search">
                             <div class="search_box">
                                 <div class="btn">
-                                    <img src="img/search_box.png">
+                                    <img src="{{ url_for('static',filename='img/search_box.png') }}">
                                 </div>
                                 <input type="text" class="input" placeholder="Поиск">
                             </div>
@@ -70,29 +72,29 @@
                             <li><a class="sub_link" href="{{ url_for('programs.comp_math.index') }}">Вычислительная математика</a>
                             <ul class="sub-sub_list">
                                 <li><a class="sub-sub_link" href="{{ url_for('programs.comp_math.deriv')}}">Производные</a></li>
-                                <li><a class="sub-sub_link" href="#">Нелинейные алгебраические 
+                                <li><a class="sub-sub_link" href="{{ url_for('programs.comp_math.nae') }}">Нелинейные алгебраические 
                                 уравнения</a></li>
                                 <li><a class="sub-sub_link" href="#">Системы НАУ</a></li>
                                 <li><a class="sub-sub_link" href="#">Интерполирование</a></li>
-                                <li><a class="sub-sub_link" href="#">Дифференциальныеуравнения</a></li>
-                                <li><a class="sub-sub_link" href="#">Многомерная оптимизация</a></li>
+                                <li><a class="sub-sub_link" href="{{ url_for('programs.comp_math.diff')}}">Дифференциальныеуравнения</a></li>
+                                <li><a class="sub-sub_link" href="{{ url_for('programs.comp_math.optimize') }}">Многомерная оптимизация</a></li>
                             </ul>
                             </li>
-                            <li><a class="sub_link" href="#">Дискретная математика</a>
+                            <li><a class="sub_link" href="{{ url_for('programs.discrete_math.index') }}">Дискретная математика</a>
                             <ul class="sub-sub_list">
-                                <li><a class="sub-sub_link" href="#">Графы</a></li>
-                                <li><a class="sub-sub_link" href="#">Множества</a></li>
+                                <li><a class="sub-sub_link" href="{{ url_for('programs.discrete_math.graphs') }}">Графы</a></li>
+                                <li><a class="sub-sub_link" href="{{ url_for('programs.discrete_math.sets') }}">Множества</a></li>
                             </ul>
                             </li>
-                            <li><a class="sub_link" href="#">Линейная алгебра</a>
+                            <li><a class="sub_link" href="{{ url_for('programs.linalg.index') }}">Линейная алгебра</a>
                             <ul class="sub-sub_list">
-                                <li><a class="sub-sub_link" href="#">Матрицы</a></li>
-                                <li><a class="sub-sub_link" href="#">Вектора</a></li>
+                                <li><a class="sub-sub_link" href="{{ url_for('programs.linalg.matrix') }}">Матрицы</a></li>
+                                <li><a class="sub-sub_link" href="{{ url_for('programs.linalg.vectors') }}">Вектора</a></li>
                                 </ul>
                                 </li>
                             </ul>
                             </li>
-                            <li><a class="menu_link" href="#">Статьи</a>
+                            <li><a class="menu_link" href="{{ url_for('post.index') }}">Статьи</a>
                                     
                             </li>
                         </ul>
