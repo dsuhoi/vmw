@@ -1,5 +1,5 @@
 @font-face{
-    font-family: 'FoglihtenNo06';
+    font-family: 'foglihtenNo06';
     src: url("{{ url_for('static', filename='font/FoglihtenNo06.otf') }}");
 
 }
