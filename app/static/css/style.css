@@ -1,16 +1,19 @@
 @font-face{
-    font-family: 'foglihtenNo06';
+    font-family: 'FoglihtenNo06';
     src: url("{{ url_for('static', filename='font/FoglihtenNo06.otf') }}");
 
 }
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 body{
     margin: 0;
-    font-family: 'foglihtenNo06','roboto', sans-serif;
+    font-family: 'FoglihtenNo06','Roboto', sans-serif;
     color: #000000;
 }
 /*CONTAINER*/
 .container{
+    box-sizing: border-box;
+    margin-top:45px;
+    height: 80px;
     text-align: center;
     align-items: center;
     width: 100%;
@@ -50,7 +53,7 @@ body{
     
     border:0;
     outline: none;
-    font-family: 'foglihtenNo06';
+    font-family: 'FoglihtenNo06';
     font-size: 14px;
     color:#000;
     box-shadow: 0px 4px 3px 1px rgba(0, 0, 0, 0.2);
@@ -79,7 +82,7 @@ body{
 }
 .banner{
     position: static;
-    
+    top:-20px;
 
     max-width: 440px;
     margin:0px 0px 0px 0px; 
@@ -92,19 +95,20 @@ body{
 
 }
 .w{
+    margin-top: -90px;
     margin:0 ;
-    font-family: 'foglihtenNo06';
+    font-family: 'FoglihtenNo06';
     font-size:140px;    
 }
 .v{
-    margin-top: -20px;
+    margin-top: -50px;
     margin-left: 15px;
 }
 
 .menu{
     height: 250px;
     margin-left: 150px;
-    margin-top:110px;
+    margin-top:140px;
     width: 800px;
     
     
@@ -150,12 +154,13 @@ body{
 
 .sub_list{
     background-color: #fff;
-    font-family: 'roboto';
+    font-family: 'Roboto';
 
     margin-right: 300px;
     font-size: 15px;
     display: none;
-    margin-top:20px;
+    margin-bottom: -70px;
+
     margin-left: -40px;
 
 }
@@ -195,10 +200,10 @@ body{
 
 .articles .img{
     margin-top: 60px;
-    margin-left: 540PX;
+    margin-left: 500PX;
 
-    height: 670px;
-    width: 728px;
+    height: 650px;
+    width: 708px;
 }
 .articles .text{
     position: absolute;
@@ -208,20 +213,20 @@ body{
     margin-left: 190px;
 
     width: 678px;
-
+    margin-top: 20px;
 
     margin-bottom: 55px;
 }
 
 
 .text .about{
-    font-family: 'roboto';
+    font-family: 'Roboto';
     font-size: 15px;
-    margin-top: -60px;
-    margin-left: 360px;
+    margin-top: -70px;
+    margin-left: 300px;
  
     height: 250px;
-    width: 240px;
+    width: 200px;
 }
 .articles .link{
     color:#000;
