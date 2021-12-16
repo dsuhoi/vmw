@@ -1,13 +1,12 @@
 @font-face{
-    font-family: FoglihtenNo06,Roboto;
+    font-family: 'FoglihtenNo06';
     src: url("{{ url_for('static', filename='font/FoglihtenNo06.ttf') }}");
-    src: url("{{ url_for('static', filename='font/Roboto-Regular.ttf') }}");
 
 }
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 body{
     margin: 0;
-
-    font-family: FoglihtenNo06,Roboto-Regular;
+    font-family: 'FoglihtenNo06','Roboto', sans-serif;
     color: #000000;
 }
 /*CONTAINER*/
@@ -51,7 +50,7 @@ body{
     
     border:0;
     outline: none;
-    font-family: FoglihtenNo06;
+    font-family: 'FoglihtenNo06';
     font-size: 14px;
     color:#000;
     box-shadow: 0px 4px 3px 1px rgba(0, 0, 0, 0.2);
@@ -94,7 +93,7 @@ body{
 }
 .w{
     margin:0 ;
-    font-family: FoglihtenNo06;
+    font-family: 'FoglihtenNo06';
     font-size:140px;    
 }
 .v{
@@ -106,13 +105,13 @@ body{
     height: 250px;
     margin-left: 150px;
     margin-top:110px;
-    width: 900px;
+    width: 800px;
     
     
 
 }
 .menu:hover {
-    box-shadow: 0px 4px 3px 1px rgba(0, 0, 0, 0.2);
+   box-shadow: 0px 4px 3px 1px rgba(0, 0, 0, 0.2);
 
 }
 
@@ -151,7 +150,7 @@ body{
 
 .sub_list{
     background-color: #fff;
-    font-family: sans-serif;
+    font-family: 'Roboto';
 
     margin-right: 300px;
     font-size: 15px;
@@ -184,41 +183,45 @@ body{
 
 
 .articles{
-    position: relative;
-    display: inline-block;
-    height: 670px;
+    box-sizing: border-box;
     width: 100%;
+    height: 800px;
     max-width: 1330px;
-    margin:45px 0px 45px 0px; 
+    margin:0 auto;
+    margin-top:45px;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
 }
 
 .articles .img{
-    margin-left: 800px;
+    margin-top: 60px;
+    margin-left: 540PX;
 
-    height: 620px;
-    width: 678px;
+    height: 670px;
+    width: 728px;
 }
 .articles .text{
     position: absolute;
 }
 .articles .title{
     font-size: 70px;
+    margin-left: 190px;
 
     width: 678px;
-    margin-left: 450px;
 
-    margin-bottom: 5px;
+
+    margin-bottom: 55px;
 }
 
 
 .text .about{
-    font-family: sans-serif;
+    font-family: 'Roboto';
     font-size: 15px;
-    margin-top: 0px;
-    margin-left: 580px;
-    margin-right:1000px;
+    margin-top: -60px;
+    margin-left: 360px;
+ 
     height: 250px;
-    width: 200px;
+    width: 240px;
 }
 .articles .link{
     color:#000;
@@ -229,7 +232,8 @@ body{
     width: 100%;
     max-width: 950px;
     margin:0 auto;
-    height: 760px;;
+    
+    height: 700px;
 
     display: flex;
     overflow-x: auto;
@@ -261,6 +265,7 @@ body{
     border:1px solid #000;
     display: flex;
     overflow-x:auto;
+    margin-top:35px;
 }
 .slider1::-webkit-scrollbar{
     width: 0;
@@ -281,12 +286,41 @@ body{
 
 }
 
+article{
+    background-color: #fff;
+    width: 100%;
+    max-width: 950px;
+    margin:0 auto;
+    margin-bottom: 60px;
+
+
+    
+}
+
+article:after, #main:after{
+    clear:both;
+    display:table;
+    content:'';
+}
+article h2, main h2{
+    font-size: 1.3em;
+    margin-bottom:15px;
+}
+article p, main p{
+    line-height: 150%;
+    margin-bottom: 15px;
+}
+
 
 
 
 
 .footer{
-    border-top: 1px solid #ccc;
+    width: 100%;
+    max-width: 360px;
+    margin:0 auto;
+    margin-top: 60px;
+    border-top: 1px solid #000;
     font-size: .8em;    
     text-align: center;
     padding: 10px 10px 30px 10px;
