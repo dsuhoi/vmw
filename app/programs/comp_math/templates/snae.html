@@ -1,18 +1,19 @@
 {% extends "form.html" %}
 {% block title %}Нелинейные алгебраические уравнения{% endblock %}
 {% block input %}
-    <p><textarea name="functions" id="functions" rows=5 cols=30
-    placeholder=
-"x_1 x_2 x_3
-sin(x_1) + x_2**2 + x_3 + 5
-x_2**2 - cos(x_3) + x_1
-..."
-    >{{ params['functions'] if params['functions'] }}</textarea></p> 
-    <input type="text" name="d0" id="d0" size=20
-    placeholder="Нач. значения: -1 2" value="{{ params['d0'] if params['d0'] }}" />
-    <input type="text" name="e" id="e" size=12 placeholder="Погрешность" 
-    value="{{ params['e'] if params['e'] else "0.001" }}" />
-    <select id="task_list" name="task_list">
-        <option value="gaus_zeid">Метод Гаусса-Зейделя</option>
-    </select>
+    <div class="snae"></div>
+        <p><textarea name="functions" id="functions" rows=5 cols=30
+        placeholder=
+        "x y z
+sin(x) + y^2 + z + 5
+x^2 - cos(y) + z"
+        >{{ params['functions'] if params['functions'] }}</textarea></p> 
+        <input type="text" name="d0" id="d0" size=20
+        placeholder="Нач. значения: -1 2" value="{{ params['d0'] if params['d0'] }}" />
+        <input type="text" name="e" id="e" size=12 placeholder="Погрешность" 
+        value="{{ params['e'] if params['e'] else "0.001" }}" />
+        <select id="task_list" name="task_list">
+            <option value="gaus_zeid">Метод Гаусса-Зейделя</option>
+        </select>
+    </div>
 {% endblock %}
