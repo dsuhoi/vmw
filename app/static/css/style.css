@@ -292,7 +292,7 @@ body{
 .slider1 .item{
     text-transform: uppercase;
     color: #fff;
-    font-size:28px;
+    font-size:14px;
     min-width: 445px;
     height: 600px;
     line-height: 600px;
@@ -335,14 +335,17 @@ article p, main p{
 
 
 
-
+.foot{
+    line-height:-1.1;
+}
 .footer{
+
     width: 100%;
     max-width: 315px;
     margin:0 auto;
     margin-top: 60px;
     border-top: 1px solid #000;
-    font-size: 15px;    
+    font-size: 12px;    
     text-align: center;
     padding: 10px 10px 30px 10px;
 }
