@@ -118,7 +118,7 @@ body{
 
 }
 .menu:hover {
-   box-shadow: 0px 4px 3px 1px rgba(0, 0, 0, 0.2);
+
 
 }
 
@@ -133,10 +133,11 @@ body{
     margin:0;
     display: flex;
 
+    justify-content: space-between;
 
 }
 .menu_list>li{
-    width: 350px;
+    width: 390px;
 
 
     font-size: 45px;
@@ -146,6 +147,8 @@ body{
 }
 .menu_list>li:hover .sub_list{
     display: flex;
+    justify-content: space-between;
+
 }
 
 
@@ -156,10 +159,11 @@ body{
 }
 
 .sub_list{
+    position: relative;
     background-color: #fff;
     font-family: 'Roboto';
 
-    margin-right: 300px;
+    margin-right: 350px;
     font-size: 15px;
     display: none;
     margin-bottom: -70px;
@@ -167,22 +171,28 @@ body{
     margin-left: -40px;
 
 }
-.sub_link{
-
-
+.sub_link {
+    font-weight: 20px;
+    margin:0 auto; 
     color: #000;
 }
+
+
 .sub_list li{
 
-    min-width:250px;
+    width: 220px
+ 
+}
+.sub_list ul{
+    width: 200px
+ 
 }
 .sub-sub_link{
 
     color: #000;
 }
-
 .sub-sub_list li{
-
+    width: 200px;
     margin-top:5px;
     margin-left: -15px;
 
