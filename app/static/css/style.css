@@ -1,8 +1,8 @@
 @font-face{
     font-family: 'FoglihtenNo06';
-    src: url("{{ url_for('static', filename='fonts/FoglihtenNo06.otf') }}");
+    src: url("{{ url_for('static', filename='font/FoglihtenNo06.otf') }}") format("opentype");;
     font-family: 'Roboto';
-    src: url("{{ url_for('static', filename='fonts/Roboto.ttf') }}");
+    src: url("{{ url_for('static', filename='font/Roboto.ttf') }}");
 
 }
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
