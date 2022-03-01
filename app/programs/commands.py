@@ -1,15 +1,17 @@
-from sympy import latex
-from sympy.parsing.sympy_parser import (
-    stringify_expr, eval_expr, implicit_multiplication,
-    standard_transformations, function_exponentiation, 
-    implicit_application, NAME, convert_xor, split_symbols
-)
-from sympy.core.function import FunctionClass
-import sympy
-import collections
-import sys
 import ast
+import collections
 import re
+import sys
+
+import sympy
+from sympy import latex
+from sympy.core.function import FunctionClass
+from sympy.parsing.sympy_parser import (NAME, convert_xor, eval_expr,
+                                        function_exponentiation,
+                                        implicit_application,
+                                        implicit_multiplication, split_symbols,
+                                        standard_transformations,
+                                        stringify_expr)
 
 PREEXEC = """from __future__ import division
 from sympy import *
@@ -17,25 +19,31 @@ import sympy
 from sympy.solvers.diophantine import diophantine
 """
 
-OTHER_SYMPY_FUNCTIONS = ('sqrt',)
+OTHER_SYMPY_FUNCTIONS = ("sqrt",)
 
-Arguments = collections.namedtuple('Arguments', 'function args kwargs')
+Arguments = collections.namedtuple("Arguments", "function args kwargs")
 
 SYNONYMS = {
-    u'derivative': 'diff',
-    u'derive': 'diff',
-    u'integral': 'integrate',
-    u'antiderivative': 'integrate',
-    u'factorize': 'factor',
-    u'graph': 'plot',
-    u'draw': 'plot'
+    "derivative": "diff",
+    "derive": "diff",
+    "integral": "integrate",
+    "antiderivative": "integrate",
+    "factorize": "factor",
+    "graph": "plot",
+    "draw": "plot",
 }
 
+
 def custom_implicit_transformation(result, local_dict, global_dict):
-    for step in (split_symbols, implicit_multiplication,
-                 implicit_application, function_exponentiation):
+    for step in (
+        split_symbols,
+        implicit_multiplication,
+        implicit_application,
+        function_exponentiation,
+    ):
         result = step(result, local_dict, global_dict)
     return result
+
 
 def synonyms(tokens, local_dict, global_dict):
     result = []
@@ -60,28 +68,28 @@ class Eval(object):
 
     def eval_node(self, node):
         tree = ast.fix_missing_locations(ast.Expression(node))
-        return eval(compile(tree, '<string>', 'eval'), self._namespace)
+        return eval(compile(tree, "<string>", "eval"), self._namespace)
 
     def eval(self, x, use_none_for_exceptions=False, repr_expression=True):
         globals = self._namespace
         try:
             x = x.strip()
             x = x.replace("\r", "")
-            y = x.split('\n')
+            y = x.split("\n")
             if len(y) == 0:
-                return ''
-            s = '\n'.join(y[:-1]) + '\n'
+                return ""
+            s = "\n".join(y[:-1]) + "\n"
             t = y[-1]
             try:
-                z = compile(t + '\n', '', 'eval')
+                z = compile(t + "\n", "", "eval")
             except SyntaxError:
-                s += '\n' + t
+                s += "\n" + t
                 z = None
 
             try:
                 old_stdout = sys.stdout
                 sys.stdout = StringIO()
-                eval(compile(s, '', 'exec', division.compiler_flag), globals, globals)
+                eval(compile(s, "", "exec", division.compiler_flag), globals, globals)
 
                 if not z is None:
                     r = eval(z, globals)
@@ -89,7 +97,7 @@ class Eval(object):
                     if repr_expression:
                         r = repr(r)
                 else:
-                    r = ''
+                    r = ""
 
                 if repr_expression:
                     sys.stdout.seek(0)
@@ -122,7 +130,7 @@ class TopCallVisitor(ast.NodeVisitor):
 
 
 class LatexVisitor(ast.NodeVisitor):
-    EXCEPTIONS = {'integrate': sympy.Integral, 'diff': sympy.Derivative}
+    EXCEPTIONS = {"integrate": sympy.Integral, "diff": sympy.Derivative}
     formatters = {}
 
     @staticmethod
@@ -130,6 +138,7 @@ class LatexVisitor(ast.NodeVisitor):
         def _formats_function(f):
             LatexVisitor.formatters[name] = f
             return f
+
         return _formats_function
 
     def format(self, name, node):
@@ -153,26 +162,33 @@ class LatexVisitor(ast.NodeVisitor):
             if result:
                 self.latex = result
             elif fname[0].islower() and fname not in OTHER_SYMPY_FUNCTIONS:
-                buffer.append("\\mathrm{%s}" % fname.replace('_', '\\_'))
-                buffer.append('(')
+                buffer.append("\\mathrm{%s}" % fname.replace("_", "\\_"))
+                buffer.append("(")
 
                 latexes = []
                 for arg in node.args:
-                    if isinstance(arg, ast.Call) and getattr(arg.func, 'id', None) and arg.func.id[0].lower() == arg.func.id[0]:
+                    if (
+                        isinstance(arg, ast.Call)
+                        and getattr(arg.func, "id", None)
+                        and arg.func.id[0].lower() == arg.func.id[0]
+                    ):
                         latexes.append(self.visit_Call(arg))
                     else:
                         latexes.append(sympy.latex(self.evaluator.eval_node(arg)))
 
-                buffer.append(', '.join(latexes))
-                buffer.append(')')
+                buffer.append(", ".join(latexes))
+                buffer.append(")")
 
-                self.latex = ''.join(buffer)
+                self.latex = "".join(buffer)
             else:
                 self.latex = sympy.latex(self.evaluator.eval_node(node))
         return self.latex
 
 
-re_calls = re.compile(r'(Integer|Symbol|Float|Rational)\s*\([\'\"]?([a-zA-Z0-9\.]+)[\'\"]?\s*\)')
+re_calls = re.compile(
+    r"(Integer|Symbol|Float|Rational)\s*\([\'\"]?([a-zA-Z0-9\.]+)[\'\"]?\s*\)"
+)
+
 
 def removeSymPy(string):
     try:
@@ -180,27 +196,30 @@ def removeSymPy(string):
     except IndexError:
         return string
 
+
 def arguments(string_or_node, evaluator):
     node = None
     if not isinstance(string_or_node, ast.Call):
         a = TopCallVisitor()
         a.visit(ast.parse(string_or_node))
 
-        if hasattr(a, 'call'):
+        if hasattr(a, "call"):
             node = a.call
     else:
         node = string_or_node
 
     if node:
         if isinstance(node, ast.Call):
-            name = getattr(node.func, 'id', None)  # when is it undefined?
+            name = getattr(node.func, "id", None)  # when is it undefined?
             args, kwargs = None, None
             if node.args:
                 args = list(map(evaluator.eval_node, node.args))
 
             kwargs = node.keywords
             if kwargs:
-                kwargs = {kwarg.arg: evaluator.eval_node(kwarg.value) for kwarg in kwargs}
+                kwargs = {
+                    kwarg.arg: evaluator.eval_node(kwarg.value) for kwarg in kwargs
+                }
 
             return Arguments(name, args, kwargs)
         elif isinstance(node, ast.Name):
@@ -226,18 +245,20 @@ def latex_result(parsed, evaluator, evaluated):
 
     first_func = evaluator.get(first_func_name)
     is_function = (
-        first_func and
-        not isinstance(first_func, FunctionClass) and
-        not isinstance(first_func, sympy.Atom) and
-        first_func_name and first_func_name[0].islower() and
-        not first_func_name in OTHER_SYMPY_FUNCTIONS) and (argument.args or argument.kwargs)
-    
+        first_func
+        and not isinstance(first_func, FunctionClass)
+        and not isinstance(first_func, sympy.Atom)
+        and first_func_name
+        and first_func_name[0].islower()
+        and not first_func_name in OTHER_SYMPY_FUNCTIONS
+    ) and (argument.args or argument.kwargs)
+
     if is_function:
         latex_input = latexify(parsed, evaluator)
     else:
         latex_input = latex(evaluated)
-   
-    result = {'input': latex_input, 'output': latex(evaluated)}
+
+    result = {"input": latex_input, "output": latex(evaluated)}
 
     return result
 
@@ -245,12 +266,12 @@ def latex_result(parsed, evaluator, evaluated):
 def vmw_eval(s):
     namespace = {}
     exec(PREEXEC, {}, namespace)
-    evaluator = Eval(namespace) 
+    evaluator = Eval(namespace)
     transformations = []
     transformations.append(synonyms)
     transformations.extend(standard_transformations)
     transformations.extend((convert_xor, custom_implicit_transformation))
     parsed = stringify_expr(s, {}, namespace, transformations)
     evaluated = eval_expr(parsed, {}, namespace)
-    
+
     return latex_result(parsed, evaluator, evaluated)

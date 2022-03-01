@@ -1,47 +1,53 @@
-from . import linalg as lng
 from app.programs.utils import render_decorator
-from flask import request, render_template
+from flask import render_template
+
+from . import linalg as lng
 from .modules import matrix as matrix_module
 from .modules import vectors as vectors_module
 
-@lng.route('/')
-def index():
-    return render_template('linalg.html')
 
-@lng.route('/matrix', methods=['GET'])
+@lng.route("/")
+def index():
+    return render_template("linalg.html")
+
+
+@lng.route("/matrix", methods=["GET"])
 def matrix():
-    @render_decorator('matrix.html', ['matrix'])
+    @render_decorator("matrix.html", ["matrix"])
     def function(task, params, config):
         text = None
-        if task=='determ':
+        if task == "determ":
             text = matrix_module.determ(params)
-        elif task=='inv':
+        elif task == "inv":
             text = matrix_module.inv(params)
-        elif task=='eigenval':
+        elif task == "eigenval":
             text = matrix_module.eigenval(params)
-        elif task=='eigenvec':
+        elif task == "eigenvec":
             text = matrix_module.eigenvec(params)
-        elif task=='operations':
+        elif task == "operations":
             text = matrix_module.operation(params)
         return text
+
     return function()
 
-@lng.route('/vectors', methods=['GET'])
+
+@lng.route("/vectors", methods=["GET"])
 def vectors():
-    @render_decorator('vectors.html', ['matrix'])
+    @render_decorator("vectors.html", ["matrix"])
     def function(task, params, config):
         text = None
-        if task=='mod':
+        if task == "mod":
             text = vectors_module.mod(params)
-        elif task == 'sum':
+        elif task == "sum":
             text = vectors_module.sum(params)
-        elif task == 'dif':
+        elif task == "dif":
             text = vectors_module.dif(params)
-        elif task == 'scalmult':
+        elif task == "scalmult":
             text = vectors_module.scalmult(params)
-        elif task == 'vecmult':
+        elif task == "vecmult":
             text = vectors_module.vecmult(params)
-        elif task == 'mixmult':
+        elif task == "mixmult":
             text = vectors_module.mixmult(params)
         return text
+
     return function()
