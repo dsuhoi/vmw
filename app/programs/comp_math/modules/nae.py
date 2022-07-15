@@ -1,7 +1,7 @@
 import math as m
 
-import numpy as np
 import sympy as sp
+from app.programs.utils import register_algorithms
 from scipy.misc import derivative
 from sympy.parsing.sympy_parser import parse_expr
 
@@ -20,6 +20,7 @@ def result(func):
         result, num_iter = func(f, a, b, e)
         return text + f"{result}$$ Число итераций равно {num_iter}."
 
+    register_algorithms(result, func, wrapper)
     return wrapper
 
 

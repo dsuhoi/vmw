@@ -2,6 +2,7 @@ import math as m
 
 import numpy as np
 import sympy as sp
+from app.programs.utils import register_algorithms
 from scipy.integrate import odeint
 from sympy.parsing.sympy_parser import parse_expr
 
@@ -30,6 +31,7 @@ def result(func):
         delta = m.fabs(res_sc[-1] - result) / m.fabs(result)
         return text + f"{result}$$Относительная погрешность: $${delta}$$"
 
+    register_algorithms(result, func, wrapper)
     return wrapper
 
 

@@ -4,7 +4,7 @@ import math as m
 import numpy as np
 import plotly
 import plotly.graph_objects as go
-import scipy.misc as sc
+from app.programs.utils import params_algorithms, register_algorithms
 
 
 def result(func):
@@ -29,7 +29,11 @@ def result(func):
         graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
         return graphJSON, f"Коэффициенты полинома: $${p}$$RMSE: $${e}$$График:"
 
+    register_algorithms(result, func, wrapper)
     return wrapper
+
+
+params_algorithms(result, {"iframe": True})
 
 
 def rmse(a, a_):

@@ -1,6 +1,5 @@
-import networkx as nx
-import numpy as np
 import sympy as sp
+from app.programs.utils import register_algorithms
 
 
 def result(func):
@@ -13,6 +12,7 @@ def result(func):
         result, text = func(*oper, **matrix)
         return "$$" + text + result + "$$"
 
+    register_algorithms(result, func, wrapper)
     return wrapper
 
 
@@ -80,7 +80,7 @@ def eigenvec(*oper, **matrix):
 
 
 @result
-def operation(*oper, **matrix):
+def operations(*oper, **matrix):
     result = ""
     text = ""
     for i in range(len(oper)):

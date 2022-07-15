@@ -36,3 +36,24 @@ def render_decorator(arg_list, render_file=None):
         return wrapper
 
     return decorator
+
+
+def params_algorithms(func_reg, params):
+    func_reg.params = params
+
+
+def register_algorithms(func_reg, func, wrapper):
+    if not hasattr(func_reg, "FUNC_DICT"):
+        func_reg.FUNC_DICT = {}
+    func_reg.FUNC_DICT |= {func.__name__: wrapper}
+
+
+def get_algorithms(func_reg, params, result, task=""):
+    algos = func_reg.FUNC_DICT
+    res = algos.get(task, list(algos.values())[0])(params)
+
+    result |= func_reg.params if hasattr(func_reg, "params") else {}
+    if isinstance(res, tuple):
+        result["graphJSON"] = res[0]
+        return res[1]
+    return res

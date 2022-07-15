@@ -1,4 +1,4 @@
-from app.programs.utils import render_decorator
+from app.programs.utils import get_algorithms, render_decorator
 from flask import render_template
 
 from . import discrete_math as dscm
@@ -14,21 +14,10 @@ def index():
 @dscm.route("/graphs", methods=["GET"])
 @render_decorator(["matrix"])
 def graphs(task, params, config):
-    if task == "create":
-        graphJSON, text = graph_module.create(params)
-    elif task == "planar":
-        graphJSON, text = graph_module.planar(params)
-    elif task == "chromatic":
-        graphJSON, text = graph_module.chromatic(params)
-    elif task == "dijkstra":
-        graphJSON, text = graph_module.dijkstra(params)
-    config["iframe"] = True
-    config["graphJSON"] = graphJSON
-    return text
+    return get_algorithms(graph_module.result, params, config, task)
 
 
 @dscm.route("/sets", methods=["GET"])
 @render_decorator(["sets"])
 def sets(task, params, config):
-    text = sets_module.sets_solve(params)
-    return text
+    return get_algorithms(sets_module.result, params, config)

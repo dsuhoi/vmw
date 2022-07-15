@@ -1,6 +1,6 @@
-import networkx as nx
 import numpy as np
 import sympy as sp
+from app.programs.utils import register_algorithms
 
 
 def result(func):
@@ -14,6 +14,7 @@ def result(func):
         result, text = func(*vector_list)
         return "$$" + text + "=" + result + "$$"
 
+    register_algorithms(result, func, wrapper)
     return wrapper
 
 

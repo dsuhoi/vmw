@@ -1,4 +1,5 @@
 import sympy as sp
+from app.programs.utils import register_algorithms
 
 
 def result(func):
@@ -18,6 +19,7 @@ def result(func):
         result, text = func(*oper, **sets)
         return "$$" + text + "=" + result + "$$"
 
+    register_algorithms(result, func, wrapper)
     return wrapper
 
 

@@ -5,6 +5,7 @@ import numpy as np
 import plotly
 import plotly.graph_objects as go
 import sympy as sp
+from app.programs.utils import params_algorithms, register_algorithms
 
 
 def result(func):
@@ -14,7 +15,6 @@ def result(func):
             [[int(x) for x in row.split()] for row in params["matrix"].split("\r\n")]
         )
         G = nx.from_numpy_matrix(matrix, create_using=nx.DiGraph)
-        labels = {x: x + 1 for x in range(G.number_of_nodes())}
 
         # result = func(G, None, labels=labels)
         Num_nodes = len(G.nodes())
@@ -86,7 +86,11 @@ def result(func):
         graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
         return graphJSON, result
 
+    register_algorithms(result, func, wrapper)
     return wrapper
+
+
+params_algorithms(result, {"iframe": True})
 
 
 @result

@@ -5,6 +5,7 @@ import plotly
 import plotly.graph_objects as go
 import scipy.misc as sc
 import sympy as sp
+from app.programs.utils import params_algorithms, register_algorithms
 from sympy.parsing.sympy_parser import parse_expr
 
 
@@ -21,7 +22,11 @@ def result(func):
         graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
         return graphJSON, result
 
+    register_algorithms(result, func, wrapper)
     return wrapper
+
+
+params_algorithms(result, {"iframe": True})
 
 
 def f_(f, x):
