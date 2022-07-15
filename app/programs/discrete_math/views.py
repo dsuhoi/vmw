@@ -12,29 +12,23 @@ def index():
 
 
 @dscm.route("/graphs", methods=["GET"])
-def graphs():
-    @render_decorator("graphs.html", ["matrix"])
-    def function(task, params, config):
-        if task == "create":
-            graphJSON, text = graph_module.create(params)
-        elif task == "planar":
-            graphJSON, text = graph_module.planar(params)
-        elif task == "chromatic":
-            graphJSON, text = graph_module.chromatic(params)
-        elif task == "dijkstra":
-            graphJSON, text = graph_module.dijkstra(params)
-        config["iframe"] = True
-        config["graphJSON"] = graphJSON
-        return text
-
-    return function()
+@render_decorator(["matrix"])
+def graphs(task, params, config):
+    if task == "create":
+        graphJSON, text = graph_module.create(params)
+    elif task == "planar":
+        graphJSON, text = graph_module.planar(params)
+    elif task == "chromatic":
+        graphJSON, text = graph_module.chromatic(params)
+    elif task == "dijkstra":
+        graphJSON, text = graph_module.dijkstra(params)
+    config["iframe"] = True
+    config["graphJSON"] = graphJSON
+    return text
 
 
 @dscm.route("/sets", methods=["GET"])
-def sets():
-    @render_decorator("sets.html", ["sets"])
-    def function(task, params, config):
-        text = sets_module.sets_solve(params)
-        return text
-
-    return function()
+@render_decorator(["sets"])
+def sets(task, params, config):
+    text = sets_module.sets_solve(params)
+    return text

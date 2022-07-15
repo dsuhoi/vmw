@@ -4,8 +4,11 @@ from app.models import Articles
 from flask import render_template, request
 
 
-def render_decorator(render_file, arg_list):
+def render_decorator(arg_list, render_file=None):
     def decorator(func):
+        nonlocal render_file
+        render_file = func.__name__ + ".html" if not render_file else render_file
+
         def wrapper():
             file_name, _ = path.splitext(render_file)
             instruction = Articles.query.filter(Articles.title == file_name).first()
@@ -29,6 +32,7 @@ def render_decorator(render_file, arg_list):
                     render_file, params=params, result=result, instruction=instruction
                 )
 
+        wrapper.__name__ = func.__name__
         return wrapper
 
     return decorator
