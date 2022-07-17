@@ -24,7 +24,6 @@ def render_decorator(arg_list, render_file=None, func_name=None):
                     result["text"] = func(task_get, params, result)
 
             except Exception as e:
-                raise (e)
                 return render_template(
                     render_file,
                     params=params,
