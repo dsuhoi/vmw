@@ -2,7 +2,7 @@ import math as m
 
 import numpy as np
 import sympy as sp
-from app.programs.utils import register_algorithms
+from app.programs.utils import params_algorithms, register_algorithms
 from scipy.misc import derivative
 from scipy.optimize import fsolve
 from sympy.parsing.sympy_parser import parse_expr
@@ -10,6 +10,7 @@ from sympy.parsing.sympy_parser import parse_expr
 
 def result(func):
     def wrapper(params):
+        print(params)
         var_str, *func_str = [row for row in params["functions"].split("\r\n")]
         func_list = [
             sp.lambdify(var_str.split(), parse_expr(row), "numpy") for row in func_str
@@ -32,6 +33,9 @@ def result(func):
 
     register_algorithms(result, func, wrapper)
     return wrapper
+
+
+params_algorithms(result, ["functions", "d0", "e"])
 
 
 def init_phi(func_list, d0, e):

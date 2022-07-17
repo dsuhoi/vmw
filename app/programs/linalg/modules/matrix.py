@@ -1,5 +1,5 @@
 import sympy as sp
-from app.programs.utils import register_algorithms
+from app.programs.utils import params_algorithms, register_algorithms
 
 
 def result(func):
@@ -14,6 +14,9 @@ def result(func):
 
     register_algorithms(result, func, wrapper)
     return wrapper
+
+
+params_algorithms(result, ["matrix"])
 
 
 def parse_operations(params):

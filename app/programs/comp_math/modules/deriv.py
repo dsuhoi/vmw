@@ -26,7 +26,7 @@ def result(func):
     return wrapper
 
 
-params_algorithms(result, {"iframe": True})
+params_algorithms(result, ["function", "ranges", "n", "d0"], {"iframe": True})
 
 
 def f_(f, x):

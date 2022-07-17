@@ -1,7 +1,7 @@
 import math as m
 
 import sympy as sp
-from app.programs.utils import register_algorithms
+from app.programs.utils import params_algorithms, register_algorithms
 from scipy.misc import derivative
 from sympy.parsing.sympy_parser import parse_expr
 
@@ -22,6 +22,9 @@ def result(func):
 
     register_algorithms(result, func, wrapper)
     return wrapper
+
+
+params_algorithms(result, ["function", "range", "e"])
 
 
 @result

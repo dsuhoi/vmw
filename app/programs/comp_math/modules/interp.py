@@ -33,7 +33,7 @@ def result(func):
     return wrapper
 
 
-params_algorithms(result, {"iframe": True})
+params_algorithms(result, ["coords", "range", "n"], ext_params={"iframe": True})
 
 
 def rmse(a, a_):

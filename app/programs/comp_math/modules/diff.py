@@ -2,7 +2,7 @@ import math as m
 
 import numpy as np
 import sympy as sp
-from app.programs.utils import register_algorithms
+from app.programs.utils import params_algorithms, register_algorithms
 from scipy.integrate import odeint
 from sympy.parsing.sympy_parser import parse_expr
 
@@ -33,6 +33,9 @@ def result(func):
 
     register_algorithms(result, func, wrapper)
     return wrapper
+
+
+params_algorithms(result, ["function", "d0", "dx", "coord"])
 
 
 def euler_method(next_y):

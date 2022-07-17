@@ -3,6 +3,7 @@ import math as m
 import numpy as np
 import scipy.optimize as sc
 import sympy as sp
+from app.programs.utils import params_algorithms, register_algorithms
 from scipy.misc import derivative
 from sympy.parsing import parse_expr
 
@@ -34,7 +35,11 @@ def result(func):
         )
         return text
 
+    register_algorithms(result, func, wrapper)
     return wrapper
+
+
+params_algorithms(result, ["function", "d0", "dx", "e"])
 
 
 def R(f, x, i, d=0):
