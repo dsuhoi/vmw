@@ -3,6 +3,8 @@ from os import path
 from app.models import Articles
 from flask import render_template, request
 
+ALG_REGISTRATOR = "result"
+
 
 def render_decorator(arg_list, render_file=None, func_name=None):
     def decorator(func):
@@ -37,7 +39,6 @@ def render_decorator(arg_list, render_file=None, func_name=None):
         wrapper.__name__ = f_name
         return wrapper
 
-    # decorator.__name__ = func_name if func_name else decorator.__name__
     return decorator
 
 
@@ -68,7 +69,7 @@ def get_route(desc, module):
     @desc.route("/" + name, methods=["GET"])
     @render_decorator(arg_list=module.result.__params__, func_name=name)
     def callback(task, params, config):
-        return get_algorithms(module.result, params, config, task)
+        return get_algorithms(getattr(module, ALG_REGISTRATOR), params, config, task)
 
 
 def get_routes_for_module(desc, modules_):
