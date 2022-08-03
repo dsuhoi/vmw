@@ -1,7 +1,7 @@
 from flask import render_template, request
 
 from . import programs
-from .commands import vmw_eval
+from .commands import sympy_eval
 
 
 @programs.route("/")
@@ -11,7 +11,7 @@ def index():
         answer = request.args.get("answer")
         if answer and answer != "":
             result = {}
-            result = vmw_eval(answer)
+            result = sympy_eval(answer)
     except Exception as e:
         return render_template("programs.html", answer=answer, error=e.__str__())
     else:

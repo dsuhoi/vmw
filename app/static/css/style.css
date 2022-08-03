@@ -20,7 +20,7 @@ body{
     align-items: center;
     width: 100%;
     max-width: 1330px;
-    margin:0 auto; 
+    margin:0 auto;
 }
 /*HEADER*/
 
@@ -52,7 +52,7 @@ body{
 
 }
 .input{
-    
+
     border:0;
     outline: none;
     font-family: 'FoglihtenNo06';
@@ -79,17 +79,17 @@ body{
     width: 100%;
     max-width: 1330px;
     height: 450px;
-    margin:0 auto; 
+    margin:0 auto;
     display: flex;
-    
+
 }
 .banner{
     position: static;
     top:-20px;
 
     max-width: 440px;
-    margin:0px 0px 0px 0px; 
-    
+    margin:0px 0px 0px 0px;
+
 
 }
 .search_box .text{
@@ -101,7 +101,7 @@ body{
     margin-top: -90px;
     margin:0 ;
     font-family: 'FoglihtenNo06';
-    font-size:140px;    
+    font-size:140px;
 }
 .v{
     margin-top: -50px;
@@ -113,8 +113,8 @@ body{
     margin-left: 150px;
     margin-top:140px;
     width: 800px;
-    
-    
+
+
 
 }
 .menu:hover {
@@ -141,8 +141,8 @@ body{
 
 
     font-size: 45px;
-    
-    
+
+
 
 }
 .menu_list>li:hover .sub_list{
@@ -173,7 +173,7 @@ body{
 }
 .sub_link {
     font-weight: 20px;
-    margin:0 auto; 
+    margin:0 auto;
     color: #000;
 }
 
@@ -181,11 +181,11 @@ body{
 .sub_list li{
 
     width: 220px
- 
+
 }
 .sub_list ul{
     width: 200px
- 
+
 }
 .sub-sub_link{
 
@@ -258,7 +258,7 @@ body{
     width: 100%;
     max-width: 950px;
     margin:0 auto;
-    
+
     height: 700px;
 
     display: flex;
@@ -278,7 +278,7 @@ body{
     height: 670px;
     width: 100%;
     max-width: 1330px;
-    margin:30px 0px 30px 0px; 
+    margin:30px 0px 30px 0px;
 
 }
 
@@ -323,7 +323,7 @@ article{
     margin-bottom: 60px;
 
 
-    
+
 }
 
 article:after, #main:after{
@@ -355,7 +355,7 @@ article p, main p{
     margin:0 auto;
     margin-top: 60px;
     border-top: 1px solid #000;
-    font-size: 12px;    
+    font-size: 12px;
     text-align: center;
     padding: 10px 10px 30px 10px;
 }
