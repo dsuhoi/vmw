@@ -1,7 +1,6 @@
-from flask import Response, redirect, url_for
+from flask import Response, redirect
 from flask_admin import Admin, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
-from flask_basicauth import BasicAuth
 from werkzeug.exceptions import HTTPException
 
 from app import basic_auth, db
