@@ -1,5 +1,5 @@
 from app.models import Articles
-from flask import Flask, redirect, render_template, request, url_for
+from flask import render_template
 
 from . import post
 
