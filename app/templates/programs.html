@@ -8,6 +8,8 @@ placeholder="Введите команду" value="{{ answer if answer }}" />
 {% block data %}
 {% if result %}
 <p><h2>Результат</h2></p>
+<p>Условие</p>
+$$ {{result['input']}}$$
 <p>Решение</p>
 $$ {{result['output']}} $$
 {% endif %}
