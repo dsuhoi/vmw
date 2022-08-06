@@ -5,7 +5,6 @@ BASEDIR = os.path.abspath(os.path.dirname(__file__))
 
 
 class config(object):
-    # Секретный ключ
     SECRET_KEY = os.getenv("SECRET_KEY") or "random_string"
 
     # Определяет, включен ли режим отладки
