@@ -7,6 +7,14 @@ ALG_REGISTRATOR = "result"
 
 
 def render_decorator(arg_list, render_file=None, func_name=None):
+    """
+    Wraps the route for the program algorithm.
+
+    arg_list - a list of names of arguments required by the program (names as in .html).
+    render_file - html file (template) where data is sent.
+    func_name - name of the function other than the default value.
+    """
+
     def decorator(func):
         f_name = func_name if func_name else func.__name__
         nonlocal render_file
@@ -47,6 +55,12 @@ def params_algorithms(func_reg, params, ext_params=dict()):
 
 
 def register_algorithms(func_reg, func, wrapper):
+    """
+    Registration of algorithm-functions.
+    func_reg - A decorator that registers a function.
+    func - algorithm-function.
+    wrapper - wrapper of algorithm-function.
+    """
     if not hasattr(func_reg, "FUNC_DICT"):
         func_reg.__func_dict__ = {}
     func_reg.__func_dict__ |= {func.__name__: wrapper}
@@ -71,6 +85,10 @@ def get_route(desc, module):
         return get_algorithms(getattr(module, ALG_REGISTRATOR), params, config, task)
 
 
-def get_routes_for_module(desc, modules_):
-    for mod in modules_:
+def get_routes_for_module(desc, module_list):
+    """
+    Creation and registration of algorithm function paths.
+    desc - flask path descriptor.
+    """
+    for mod in module_list:
         get_route(desc, mod)
