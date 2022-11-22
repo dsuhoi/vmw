@@ -1,12 +1,16 @@
 from os import path
+from types import ModuleType
+from typing import Callable
 
 from app.models import Articles
-from flask import render_template, request
+from flask import Blueprint, render_template, request
 
 ALG_REGISTRATOR = "result"
 
 
-def render_decorator(arg_list, render_file=None, func_name=None):
+def render_decorator(
+    arg_list: list[str], render_file: str = None, func_name: str = None
+):
     """
     Wraps the route for the program algorithm.
 
@@ -49,12 +53,12 @@ def render_decorator(arg_list, render_file=None, func_name=None):
     return decorator
 
 
-def params_algorithms(func_reg, params, ext_params=dict()):
+def params_algorithms(func_reg: Callable, params: list[str], ext_params=dict()):
     func_reg.__params__ = params
     func_reg.__ext_params__ = ext_params
 
 
-def register_algorithms(func_reg, func, wrapper):
+def register_algorithms(func_reg: Callable, func: Callable, wrapper: Callable):
     """
     Registration of algorithm-functions.
     func_reg - A decorator that registers a function.
@@ -66,7 +70,9 @@ def register_algorithms(func_reg, func, wrapper):
     func_reg.__func_dict__ |= {func.__name__: wrapper}
 
 
-def get_algorithms(func_reg, params, result, task=None):
+def get_algorithms(
+    func_reg: Callable, params: list[str], result: dict, task: str = None
+):
     algos = func_reg.__func_dict__
     res = algos.get(task, list(algos.values())[0])(params)
     result |= func_reg.__ext_params__
@@ -76,7 +82,7 @@ def get_algorithms(func_reg, params, result, task=None):
     return res
 
 
-def get_route(desc, module):
+def get_route(desc: Blueprint, module: ModuleType):
     name = module.__name__.split(".")[-1]
 
     @desc.route("/" + name, methods=["GET"])
@@ -85,7 +91,7 @@ def get_route(desc, module):
         return get_algorithms(getattr(module, ALG_REGISTRATOR), params, config, task)
 
 
-def get_routes_for_module(desc, module_list):
+def get_routes_for_module(desc: Blueprint, module_list: list[ModuleType]):
     """
     Creation and registration of algorithm function paths.
     desc - flask path descriptor.
