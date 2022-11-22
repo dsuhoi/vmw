@@ -1,41 +1,39 @@
-# Виртуальный Математический Практикум
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/dsuhoi/vmw)
+# Virtual Math Workshop
+![GitHub repo size](https://img.shields.io/github/repo-size/dsuhoi/vmw)
 [![GitHub](https://img.shields.io/github/license/dsuhoi/vmw)](https://github.com/dsuhoi/vmw/blob/main/LICENSE)
 
-> Платформа для ознакомления с линейной алгеброй, дискретной и вычислительной математикой.
+> Platform for studying linear algebra, discrete and computational mathematics.
 
-<p align="center"><img src="https://github.com/dsuhoi/vmw/blob/main/doc/images/main_page.png" width=55%></p>
-
-### Установка
-Настройка виртуального окружения
+### Installation
+Setting up a virtual environment
 ```sh
 python -m venv env
 source env/bin/activate
 ```
-Установка зависимостей из requirements.txt
+Installing dependencies from requirements.txt
 ```sh
 pip install -r requirements.txt
 ```
 
-### Запуск
+### Setup
 ```sh
 python manage.py runserver
 ```
 
-### Основные разделы
-#### Вычислительная математика
-- Производные
-- Системы нелинейных алгебраических уравнений
-- Интерполяция
-- Дифференциальные уравнения
-- Многомерная оптимизация
-#### Дискретная математика
-- Графы
-- Множества
-#### Линейная алгебра
-- Матрицы
-#### Система компьютерной алгебры
-- Интерпретатор sympy
+### Main sections
+#### Computational mathematics
+- Derivatives
+- Systems of nonlinear algebraic equations
+- Interpolation
+- Differential equations
+- Multidimensional optimization
+#### Discrete mathematics
+- Graphs
+- Sets
+#### Linear algebra
+- Matrices
+#### Computer Algebra system
+- Sympy interpreter
 
 ### License
 Copyright © 2022 [dsuhoi](https://github.com/dsuhoi).
