@@ -2,13 +2,13 @@
 {% block title %}Дифференциальные уравнения{% endblock %}
 {% block input %}
     <input type="text" name="function" id="function" size=40
-    placeholder="y(x)*x + y(x)*cos(x), x y"
-    value="{{ params['function'] if params['function'] }}" /> 
+    placeholder="y*x + y*cos(x), x y"
+    value="{{ params['function'] if params['function'] }}" />
     <input type="text" name="d0" id="d0" size=15
     placeholder="Нач. значения: 0 1" value="{{ params['d0'] if params['d0'] }}" />
     <input type="text" name="coord" id="coord" size=10 placeholder="Точка"
     value="{{ params['coord'] if params['coord'] }}" />
-    <input type="text" name="dx" id="dx" size=12 placeholder="Шаг интегр." 
+    <input type="text" name="dx" id="dx" size=12 placeholder="Шаг интегр."
     value="{{ params['dx'] if params['dx'] else "0.01" }}" />
     <select id="task_list" name="task_list">
         <option value="euler">Метод Эйлера</option>

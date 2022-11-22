@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% block scripts %}{% if result and not result.get('iframe') %}
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+{% endif %}{% endblock %}
 {% block text %}
 <article class="snae">
     <form class="in" method="get">
@@ -9,14 +12,15 @@
     {% if error %}
     <p><b>Error:</b> {{ error }}</p>
     {% endif %}
+
 {% block data %}
     {% if result %}
     <h2>Результат:</h2>
     <p>{{ result['text'] | safe }}</p>
-
         {% if result['iframe'] %}
             <div id='chart' class='chart'></div>
             <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+            <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
             <script type='text/javascript'>
               var graphs = {{result['graphJSON'] | safe}};
               Plotly.plot('chart',graphs,{});

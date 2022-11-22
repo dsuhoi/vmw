@@ -13,8 +13,8 @@
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
 
-
         <title>{% block title %}VMW | Виртуальный Математический Практикум{% endblock %}</title>
+
         {% block scripts%}
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({
@@ -39,10 +39,12 @@
                 },
                 extensions: ["tex2jax.js"]
             });
-        {% endblock %}
         </script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+        {% endblock %}
     </head>
+
     <body>
         <main>
             <header>
@@ -126,6 +128,5 @@
                 </footer>
             </div>
         </main>
-
     </body>
 </html>
