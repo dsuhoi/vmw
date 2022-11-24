@@ -1,5 +1,9 @@
 # Virtual Math Workshop
+<<<<<<< HEAD
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/dsuhoi/vmw)
+=======
+![GitHub repo size](https://img.shields.io/github/repo-size/dsuhoi/vmw)
+>>>>>>> develop
 [![GitHub](https://img.shields.io/github/license/dsuhoi/vmw)](https://github.com/dsuhoi/vmw/blob/main/LICENSE)
 
 > Platform for studying linear algebra, discrete and computational mathematics.
