@@ -1,5 +1,5 @@
 # Virtual Math Workshop
-![GitHub repo size](https://img.shields.io/github/repo-size/dsuhoi/vmw)
+[![workflow](https://github.com/dsuhoi/vmw/actions/workflows/python-app.yml/badge.svg)](https://github.com/dsuhoi/vmw/actions/workflows/python-app.yml)
 [![GitHub](https://img.shields.io/github/license/dsuhoi/vmw)](https://github.com/dsuhoi/vmw/blob/main/LICENSE)
 
 > Platform for studying linear algebra, discrete and computational mathematics.
@@ -17,7 +17,7 @@ pip install -r requirements.txt
 
 ### Setup
 ```sh
-python manage.py runserver
+python main.py
 ```
 
 ### Main sections
@@ -37,4 +37,5 @@ python manage.py runserver
 
 ### License
 Copyright © 2022 [dsuhoi](https://github.com/dsuhoi).
+
 This project is [MIT](https://github.com/dsuhoi/vmw/blob/main/LICENSE) licensed.
